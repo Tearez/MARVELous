@@ -1,0 +1,13 @@
+xcassets:
+-
+  inputs:
+    - ${PROJECT_DIR}/${TARGET_NAME}/Resources/Images.xcassets
+  outputs:
+    - templatePath: ${PROJECT_DIR}/SwiftGenTemplate/assets.stencil
+      output: ${PROJECT_DIR}/${TARGET_NAME}/SwiftGenOutput/Assets.swift
+-
+  inputs:
+    - ${PROJECT_DIR}/${TARGET_NAME}/Resources/Colors.xcassets
+  outputs:
+    - templatePath: ${PROJECT_DIR}/SwiftGenTemplate/colors.stencil
+      output: ${PROJECT_DIR}/${TARGET_NAME}/SwiftGenOutput/Colors.swift

@@ -1,0 +1,92 @@
+// swiftlint:disable all
+{% if catalogs %}
+{% set enumName %}{{param.enumName|default:"Assets"}}{% endset %}
+{% set arResourceGroupType %}{{param.arResourceGroupTypeName|default:"ARResourceGroupAsset"}}{% endset %}
+{% set colorType %}{{param.colorTypeName|default:"ColorAsset"}}{% endset %}
+{% set dataType %}{{param.dataTypeName|default:"DataAsset"}}{% endset %}
+{% set imageType %}{{param.imageTypeName|default:"ImageAsset"}}{% endset %}
+{% set symbolType %}{{param.symbolTypeName|default:"SymbolAsset"}}{% endset %}
+{% set forceNamespaces %}{{param.forceProvidesNamespaces|default:"false"}}{% endset %}
+{% set accessModifier %}public{% endset %}
+import UIKit
+
+// MARK: - Asset Catalogs
+
+{% macro enumBlock assets %}
+	{% call casesBlock assets %}
+	{% if param.allValues %}
+
+	{% if resourceCount.image > 0 %}
+	{{accessModifier}} static let allImages: [{{imageType}}] = [
+		{% filter indent:8 %}{% call allValuesBlock assets "image" "" %}{% endfilter %}
+	]
+	{% endif %}
+	{% endif %}
+{% endmacro %}
+{% macro casesBlock assets %}
+	{% for asset in assets %}
+	{% if asset.type == "image" %}
+	{{accessModifier}} static let {{asset.name|swiftIdentifier:"pretty"|lowerFirstWord|escapeReservedKeywords}} = {{imageType}}(name: "{{asset.value}}")
+	{% elif asset.items and ( forceNamespaces == "true" or asset.isNamespaced == "true" ) %}
+	{{accessModifier}} enum {{asset.name|swiftIdentifier:"pretty"|escapeReservedKeywords}} {
+		{% filter indent:8 %}{% call casesBlock asset.items %}{% endfilter %}
+	}
+	{% elif asset.items %}
+	{% call casesBlock asset.items %}
+	{% endif %}
+	{% endfor %}
+{% endmacro %}
+{% macro allValuesBlock assets filter prefix %}
+	{% for asset in assets %}
+	{% if asset.type == filter %}
+	{{prefix}}{{asset.name|swiftIdentifier:"pretty"|lowerFirstWord|escapeReservedKeywords}},
+	{% elif asset.items and ( forceNamespaces == "true" or asset.isNamespaced == "true" ) %}
+	{% set prefix8 %}{{prefix}}{{asset.name|swiftIdentifier:"pretty"|escapeReservedKeywords}}.{% endset %}
+	{% call allValuesBlock asset.items filter prefix8 %}
+	{% elif asset.items %}
+	{% call allValuesBlock asset.items filter prefix %}
+	{% endif %}
+	{% endfor %}
+{% endmacro %}
+{{accessModifier}} enum {{enumName}} {
+	{% if catalogs.count > 1 or param.forceFileNameEnum %}
+	{% for catalog in catalogs %}
+	{{accessModifier}} enum {{catalog.name|swiftIdentifier:"pretty"|escapeReservedKeywords}} {
+	{% filter indent:8 %}{% call enumBlock catalog.assets %}{% endfilter %}
+	}
+	{% endfor %}
+	{% else %}
+	{% call enumBlock catalogs.first.assets %}
+	{% endif %}
+}
+
+{% if resourceCount.image > 0 %}
+{{accessModifier}} struct {{imageType}} {
+	fileprivate(set) var name: String
+
+	{{accessModifier}} var image: UIImage {
+		let bundle = {{param.bundle|default:"BundleToken.bundle"}}
+		let image = UIImage(named: name, in: bundle, compatibleWith: nil)
+		guard let result = image else {
+			fatalError("Unable to load image asset named \(name).")
+		}
+		return result
+	}
+}
+{% endif %}
+{% if not param.bundle %}
+
+private final class BundleToken {
+	static let bundle: Bundle = {
+		#if SWIFT_PACKAGE
+		return Bundle.module
+		#else
+		return Bundle(for: BundleToken.self)
+		#endif
+	}()
+}
+// swiftlint:enable all
+{% endif %}
+{% else %}
+// No assets found
+{% endif %}
