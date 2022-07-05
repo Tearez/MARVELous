@@ -11,6 +11,9 @@
 		D85F9F1E27A5984D002733AD /* WebError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D85F9F1D27A5984D002733AD /* WebError.swift */; };
 		D8740E5B27BBDD4400DB5F26 /* CryptoFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8740E5A27BBDD4400DB5F26 /* CryptoFormatter.swift */; };
 		D8740E6827BC014300DB5F26 /* CardViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8740E6727BC014300DB5F26 /* CardViewModifier.swift */; };
+		D8823DC8287454DB005D15A3 /* CommonResponseContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8823DC7287454DB005D15A3 /* CommonResponseContainer.swift */; };
+		D8823DCC28745AA2005D15A3 /* CharacterResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8823DCB28745AA2005D15A3 /* CharacterResponse.swift */; };
+		D8823DCE28746095005D15A3 /* SwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8823DCD28746095005D15A3 /* SwiftUIView.swift */; };
 		D893D25527A43F4E0005B8D9 /* MarvelousApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D893D25427A43F4E0005B8D9 /* MarvelousApp.swift */; };
 		D893D25927A43F500005B8D9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D893D25827A43F500005B8D9 /* Assets.xcassets */; };
 		D893D25C27A43F500005B8D9 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D893D25B27A43F500005B8D9 /* Preview Assets.xcassets */; };
@@ -36,6 +39,9 @@
 		D85F9F1D27A5984D002733AD /* WebError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebError.swift; sourceTree = "<group>"; };
 		D8740E5A27BBDD4400DB5F26 /* CryptoFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoFormatter.swift; sourceTree = "<group>"; };
 		D8740E6727BC014300DB5F26 /* CardViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewModifier.swift; sourceTree = "<group>"; };
+		D8823DC7287454DB005D15A3 /* CommonResponseContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonResponseContainer.swift; sourceTree = "<group>"; };
+		D8823DCB28745AA2005D15A3 /* CharacterResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterResponse.swift; sourceTree = "<group>"; };
+		D8823DCD28746095005D15A3 /* SwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIView.swift; sourceTree = "<group>"; };
 		D893D25127A43F4E0005B8D9 /* Marvelous.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Marvelous.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D893D25427A43F4E0005B8D9 /* MarvelousApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarvelousApp.swift; sourceTree = "<group>"; };
 		D893D25827A43F500005B8D9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -100,6 +106,7 @@
 		D85F9F1F27A5995E002733AD /* WebService */ = {
 			isa = PBXGroup;
 			children = (
+				D8823DC628745370005D15A3 /* Responses */,
 				D8EB446127A99527001A74C7 /* Base */,
 				D8C745E1287193470099973C /* WebService.swift */,
 			);
@@ -111,6 +118,7 @@
 			children = (
 				D8740E6627BC010600DB5F26 /* Modifiers */,
 				D8EB445A27A974CB001A74C7 /* Styles */,
+				D8823DCD28746095005D15A3 /* SwiftUIView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -129,6 +137,15 @@
 				D8740E6727BC014300DB5F26 /* CardViewModifier.swift */,
 			);
 			path = Modifiers;
+			sourceTree = "<group>";
+		};
+		D8823DC628745370005D15A3 /* Responses */ = {
+			isa = PBXGroup;
+			children = (
+				D8823DC7287454DB005D15A3 /* CommonResponseContainer.swift */,
+				D8823DCB28745AA2005D15A3 /* CharacterResponse.swift */,
+			);
+			path = Responses;
 			sourceTree = "<group>";
 		};
 		D893D24827A43F4E0005B8D9 = {
@@ -407,6 +424,7 @@
 			files = (
 				D8C745E2287193470099973C /* WebService.swift in Sources */,
 				D8740E5B27BBDD4400DB5F26 /* CryptoFormatter.swift in Sources */,
+				D8823DCE28746095005D15A3 /* SwiftUIView.swift in Sources */,
 				D8C745DE28718FAC0099973C /* Colors.swift in Sources */,
 				D8C745DF28718FAC0099973C /* Assets.swift in Sources */,
 				D893D25527A43F4E0005B8D9 /* MarvelousApp.swift in Sources */,
@@ -416,6 +434,8 @@
 				D8EB445F27A98855001A74C7 /* String+Localized.swift in Sources */,
 				D8EB446427A995C2001A74C7 /* LocalStorageProvider.swift in Sources */,
 				D8EC295527A690090021BD77 /* ViewModelFactory.swift in Sources */,
+				D8823DCC28745AA2005D15A3 /* CharacterResponse.swift in Sources */,
+				D8823DC8287454DB005D15A3 /* CommonResponseContainer.swift in Sources */,
 				D85F9F1C27A59508002733AD /* BaseNetworkClient.swift in Sources */,
 				D8EB445C27A974E5001A74C7 /* ScaledButtonStyle.swift in Sources */,
 			);
