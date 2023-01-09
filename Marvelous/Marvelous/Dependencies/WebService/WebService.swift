@@ -20,22 +20,38 @@ struct EmptyResponse: Decodable {}
 class WebService {
 	private let apiClient: BaseNetworkClient
 	private let configurationProvider: ConfigurationProviderProtocol
+	private let keychainAccessFetcher: KeychainAccessFetcherProtocol
+	private let secretEncryptor: SecretEncryptorProtocol
 
-	init(apiClient: BaseNetworkClient,
-		 configurationProvider: ConfigurationProviderProtocol) {
-		self.apiClient = apiClient
+	init(configurationProvider: ConfigurationProviderProtocol,
+		 keychainAccessFetcher: KeychainAccessFetcherProtocol,
+		 secretEncryptor: SecretEncryptorProtocol) {
+		self.apiClient = BaseNetworkClient()
 		self.configurationProvider = configurationProvider
+		self.keychainAccessFetcher = keychainAccessFetcher
+		self.secretEncryptor = secretEncryptor
 	}
 
 	func getAllCharacters() -> AnyPublisher<CommonResponseContainer<PagedResponse<CharacterResposne>>, Error> {
-		return apiClient.request(
-			url: buildUrl(for: "/v1/public/characters"),
-			method: .get,
-			parameters: Params(
-				apikey: publicKey,
-				hash: Insecure.MD5.hash(data: (timeStamp + privateKey + publicKey).data(using: .utf8) ?? Data()).map { String(format: "%02hhx", $0) }.joined()
-			)
-		).eraseToAnyPublisher()
+		return CurrentValueSubject<KeychainAccessActionResult<KeychainAccessAPIKeys>, Error>.init(keychainAccessFetcher.fetchAPIKeys())
+			.eraseToAnyPublisher()
+			.tryMap { result -> KeychainAccessAPIKeys in
+				switch result {
+					case .success(let keys):
+						return keys
+					case .error(let error):
+						throw error
+				}
+			}
+			.flatMap(maxPublishers: .max(1), { apiKeys -> AnyPublisher<CommonResponseContainer<PagedResponse<CharacterResposne>>, Error> in
+				let hash = self.secretEncryptor.encryptWebServiceHash(for: apiKeys.privateKey, publicKey: apiKeys.publicKey)
+
+				return self.apiClient
+					.request(url: self.buildUrl(for: "/v1/public/characters"),
+							 method: .get,
+							 parameters: Params(apikey: apiKeys.publicKey, hash: hash))
+			})
+			.eraseToAnyPublisher()
 	}
 
 	private func buildUrl(for path: String) -> String {

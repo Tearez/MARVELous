@@ -11,9 +11,12 @@ struct SwiftUIView: View {
 	private let vm = VM()
 
     var body: some View {
-        Text("Hello, World!")
-			.background(.blue)
-			.onAppear(perform: { vm.callService() })
+		ZStack {
+			Rectangle()
+				.foregroundColor(Colors.secondary.uiColor.color)
+				.ignoresSafeArea()
+			SignInScreen()
+		}
     }
 }
 

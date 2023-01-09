@@ -4,7 +4,10 @@ import SwiftUI
 
 public enum Colors {
 	public static let background = ColorAsset(name: "background")
+	public static let darkText = ColorAsset(name: "darkText")
+	public static let lightText = ColorAsset(name: "lightText")
 	public static let primary = ColorAsset(name: "primary")
+	public static let secondary = ColorAsset(name: "secondary")
 }
 
 public final class ColorAsset {

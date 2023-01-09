@@ -6,4 +6,6 @@
   
 */
 
-"greeting" = "Hello, Crypto";
+"sign_in_public_key" = "Public Key";
+"sign_in_private_key" = "Private Key";
+"sing_in__primary_button_title" = "Sign In";

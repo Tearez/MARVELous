@@ -8,11 +8,20 @@
 import SwiftUI
 
 struct CardViewModifier: ViewModifier {
+	private let backgroundColor: Color
+
+	init(backgroundColor: Color? = nil) {
+		self.backgroundColor = backgroundColor ?? Colors.secondary.uiColor.color
+	}
+
 	func body(content: Content) -> some View {
-		content
-			.padding(6)
-			.background(Colors.background.uiColor.color)
-			.cornerRadius(8)
-			.shadow(color: .gray, radius: 4, x: 0, y: 0)
+		ZStack {
+			content
+				.padding(.all)
+				.background(backgroundColor)
+				.cornerRadius(8)
+				.shadow(color: .gray, radius: 4, x: 0, y: 0)
+		}
+		.padding(.horizontal)
 	}
 }

@@ -1,24 +1,28 @@
 PODS:
   - Alamofire (5.5.0)
+  - KeychainAccess (4.2.2)
   - SwiftGen (6.5.1)
   - Swinject (2.8.1)
 
 DEPENDENCIES:
   - Alamofire (~> 5.5)
+  - KeychainAccess (= 4.2.2)
   - SwiftGen (~> 6.0)
   - Swinject (= 2.8.1)
 
 SPEC REPOS:
   https://cdn.cocoapods.org/:
     - Alamofire
+    - KeychainAccess
     - SwiftGen
     - Swinject
 
 SPEC CHECKSUMS:
   Alamofire: 1c4fb5369c3fe93d2857c780d8bbe09f06f97e7c
+  KeychainAccess: c0c4f7f38f6fc7bbe58f5702e25f7bd2f65abf51
   SwiftGen: a6d22010845f08fe18fbdf3a07a8e380fd22e0ea
   Swinject: 97112918bd7e0785dc2df7036213f3c8cbba6586
 
-PODFILE CHECKSUM: cf4eb97bb758c7f90f46b9dc9af0bcca57a5bcc0
+PODFILE CHECKSUM: af8ff0f34340b0acded21eb9feb9e895db4d627b
 
 COCOAPODS: 1.11.2
