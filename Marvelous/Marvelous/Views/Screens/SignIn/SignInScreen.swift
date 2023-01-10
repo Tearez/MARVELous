@@ -22,11 +22,24 @@ struct SignInScreen: View {
 			SecureField("sign_in_private_key".localized(), text: $viewModel.privateKey)
 				.modifier(CardViewModifier(backgroundColor: Colors.background.uiColor.color))
 			Button("sing_in__primary_button_title".localized(), action: {
-				viewModel.signIn()
+				Task {
+					await viewModel.signIn()
+				}
 			})
 			.primaryButtonStyle()
 		}
 		.modifier(CardViewModifier(backgroundColor: Colors.background.uiColor.color))
+		.alert("Error",
+			   isPresented: .constant(viewModel.errorMessage != nil),
+			   presenting: viewModel.errorMessage,
+			   actions: { _ in
+			Button("Close", action: {
+				viewModel.errorMessage = nil
+			})
+		},
+			   message: { message in
+			Text(message)
+		})
 	}
 }
 

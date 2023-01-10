@@ -8,13 +8,6 @@
 import KeychainAccess
 import Combine
 
-enum KeychainAccessActionResult<T> {
-	case success(T)
-	case error(Error)
-}
-
-typealias KeychainAccessSetterResultHandler = (KeychainAccessActionResult<Void>) -> Void
-
 struct KeychainAccessAPIKeys {
 	let publicKey: String
 	let privateKey: String
@@ -25,7 +18,7 @@ enum KeychainAccessSetterType {
 	case publicKey(String)
 }
 
-struct KeychainAccessError: LocalizedError {
+struct KeychainAccessError: Error {
 	enum KeychainAccessErrorType {
 		case fetchingKeys
 		case settingProperty(KeychainAccessSetterType)
@@ -43,26 +36,32 @@ struct KeychainAccessError: LocalizedError {
 	static func error(for type: KeychainAccessErrorType) -> Self {
 		switch type {
 			case .fetchingKeys:
-				return Self.init(description: "Error occured while fetching API Keys", type: type)
+			return Self.init(description: "keychain_error_fetching_keys".localized(), type: type)
 			case .settingProperty(let keychainAccessSetterType):
 				switch keychainAccessSetterType {
-					case .publicKey(let key):
-						return Self.init(description: "Error occured while setting public key with value: \(key)", type: type)
-					case .privateKey(let key):
-						return Self.init(description: "Error occured while setting private key with value: \(key)", type: type)
+					case .publicKey:
+						return Self.init(description: "keychain_error_public_key".localized(), type: type)
+					case .privateKey:
+					return Self.init(description: "keychain_error_private_key".localized(), type: type)
 				}
 			case .unknown:
-				return Self.init(description: "Unknown error has occured")
+			return Self.init(description: "keychain_error_unknown".localized())
 		}
 	}
 }
 
+extension KeychainAccessError: LocalizedError {
+	public var errorDescription: String? {
+		self.description
+	}
+}
+
 protocol KeychainAccessFetcherProtocol {
-	func fetchAPIKeys() -> KeychainAccessActionResult<KeychainAccessAPIKeys>
+	func fetchAPIKeys() throws -> KeychainAccessAPIKeys
 }
 
 protocol KeychainAccessSetterProtocol {
-	func setProperty(for type: KeychainAccessSetterType, resultHandler: @escaping KeychainAccessSetterResultHandler)
+	func setProperty(_ type: KeychainAccessSetterType) async throws -> Void
 }
 
 final class KeychainAccess: KeychainAccessFetcherProtocol, KeychainAccessSetterProtocol {
@@ -73,22 +72,22 @@ final class KeychainAccess: KeychainAccessFetcherProtocol, KeychainAccessSetterP
 	}
 	private let keychain = Keychain(service: StoreKeys.keychainService)
 
-	func fetchAPIKeys() -> KeychainAccessActionResult<KeychainAccessAPIKeys> {
+	func fetchAPIKeys() throws -> KeychainAccessAPIKeys {
 		do {
 			let privateKey = try keychain.getString(StoreKeys.privateKeySecret)
 			let publicKey = try keychain.getString(StoreKeys.publicKeySecret)
 			guard let unwrapedPrivateKey = privateKey,
 				  let unwrappedPublicKey = publicKey else {
-				return .error(KeychainAccessError.error(for: .fetchingKeys))
+				throw KeychainAccessError.error(for: .fetchingKeys)
 			}
 
-			return .success(.init(publicKey: unwrappedPublicKey, privateKey: unwrapedPrivateKey))
+			return .init(publicKey: unwrappedPublicKey, privateKey: unwrapedPrivateKey)
 		} catch {
-			return .error(KeychainAccessError.error(for: .fetchingKeys))
+			throw KeychainAccessError.error(for: .fetchingKeys)
 		}
 	}
 
-	func setProperty(for type: KeychainAccessSetterType, resultHandler: @escaping KeychainAccessSetterResultHandler) {
+	func setProperty(_ type: KeychainAccessSetterType) async throws {
 		do {
 			switch type {
 				case .privateKey(let privateKey):
@@ -96,10 +95,9 @@ final class KeychainAccess: KeychainAccessFetcherProtocol, KeychainAccessSetterP
 				case .publicKey(let publicKey):
 					try keychain.set(publicKey, key: StoreKeys.publicKeySecret)
 			}
-			resultHandler(.success(()))
-		} catch let error {
-			print(error.localizedDescription)
-			resultHandler(.error(KeychainAccessError.error(for: .settingProperty(type))))
+			throw KeychainAccessError.error(for: .settingProperty(type))
+		} catch {
+			throw KeychainAccessError.error(for: .settingProperty(type))
 		}
 	}
 }

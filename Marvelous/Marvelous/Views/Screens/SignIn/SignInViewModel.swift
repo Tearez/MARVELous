@@ -12,29 +12,33 @@ protocol SignInDependency: HasKeychainSetter {}
 final class SignInViewModel: SignInDependency, ObservableObject {
 	let keychainSetter: KeychainAccessSetterProtocol
 
+	@MainActor
 	@Published var publicKey: String = ""
+	@MainActor
 	@Published var privateKey: String = ""
+	@MainActor
+	@Published var errorMessage: String?
 
 	init(dependency: SignInDependency) {
 		self.keychainSetter = dependency.keychainSetter
 	}
 
-	func signIn() {
-		keychainSetter.setProperty(for: .publicKey(publicKey)) { result in
-			switch result {
-			case .success:
-				print("SET SUCCESS PUBLIC")
-			case .error(let error):
-				print("SET ERROR PUBLIC \(error.localizedDescription)")
+	func signIn() async {
+		do {
+			try await withThrowingTaskGroup(of: Void.self, returning: Void.self) { taskGroup in
+				taskGroup.addTask() {
+					try await self.keychainSetter.setProperty(.publicKey(self.publicKey))
+				}
+				taskGroup.addTask() {
+					try await self.keychainSetter.setProperty(.privateKey(self.privateKey))
+				}
+
+				return try await taskGroup.waitForAll()
 			}
-		}
-		keychainSetter.setProperty(for: .privateKey(privateKey)) { result in
-			switch result {
-			case .success:
-				print("SET SUCCESS PRIVATE")
-			case .error(let error):
-				print("SET ERROR PRIVATE \(error.localizedDescription)")
-			}
+		} catch let error {
+			await MainActor.run(body: {
+				errorMessage = error.localizedDescription
+			})
 		}
 	}
 }

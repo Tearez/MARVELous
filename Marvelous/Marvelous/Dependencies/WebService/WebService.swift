@@ -32,27 +32,27 @@ class WebService {
 		self.secretEncryptor = secretEncryptor
 	}
 
-	func getAllCharacters() -> AnyPublisher<CommonResponseContainer<PagedResponse<CharacterResposne>>, Error> {
-		return CurrentValueSubject<KeychainAccessActionResult<KeychainAccessAPIKeys>, Error>.init(keychainAccessFetcher.fetchAPIKeys())
-			.eraseToAnyPublisher()
-			.tryMap { result -> KeychainAccessAPIKeys in
-				switch result {
-					case .success(let keys):
-						return keys
-					case .error(let error):
-						throw error
-				}
-			}
-			.flatMap(maxPublishers: .max(1), { apiKeys -> AnyPublisher<CommonResponseContainer<PagedResponse<CharacterResposne>>, Error> in
-				let hash = self.secretEncryptor.encryptWebServiceHash(for: apiKeys.privateKey, publicKey: apiKeys.publicKey)
-
-				return self.apiClient
-					.request(url: self.buildUrl(for: "/v1/public/characters"),
-							 method: .get,
-							 parameters: Params(apikey: apiKeys.publicKey, hash: hash))
-			})
-			.eraseToAnyPublisher()
-	}
+//	func getAllCharacters() -> AnyPublisher<CommonResponseContainer<PagedResponse<CharacterResposne>>, Error> {
+//		return CurrentValueSubject<KeychainAccessActionResult<KeychainAccessAPIKeys>, Error>.init(keychainAccessFetcher.fetchAPIKeys())
+//			.eraseToAnyPublisher()
+//			.tryMap { result -> KeychainAccessAPIKeys in
+//				switch result {
+//					case .success(let keys):
+//						return keys
+//					case .error(let error):
+//						throw error
+//				}
+//			}
+//			.flatMap(maxPublishers: .max(1), { apiKeys -> AnyPublisher<CommonResponseContainer<PagedResponse<CharacterResposne>>, Error> in
+//				let hash = self.secretEncryptor.encryptWebServiceHash(for: apiKeys.privateKey, publicKey: apiKeys.publicKey)
+//
+//				return self.apiClient
+//					.request(url: self.buildUrl(for: "/v1/public/characters"),
+//							 method: .get,
+//							 parameters: Params(apikey: apiKeys.publicKey, hash: hash))
+//			})
+//			.eraseToAnyPublisher()
+//	}
 
 	private func buildUrl(for path: String) -> String {
 		return configurationProvider.baseUrl.appending(path)
