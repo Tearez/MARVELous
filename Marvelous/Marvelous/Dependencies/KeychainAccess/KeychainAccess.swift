@@ -95,7 +95,6 @@ final class KeychainAccess: KeychainAccessFetcherProtocol, KeychainAccessSetterP
 				case .publicKey(let publicKey):
 					try keychain.set(publicKey, key: StoreKeys.publicKeySecret)
 			}
-			throw KeychainAccessError.error(for: .settingProperty(type))
 		} catch {
 			throw KeychainAccessError.error(for: .settingProperty(type))
 		}

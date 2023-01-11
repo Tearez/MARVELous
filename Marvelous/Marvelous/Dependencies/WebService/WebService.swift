@@ -17,7 +17,11 @@ struct Params: Encodable {
 
 struct EmptyResponse: Decodable {}
 
-class WebService {
+protocol GetAllCharactersWebServiceProtocol {
+	func getAllCharacters() async throws -> CommonResponseContainer<PagedResponse<CharacterResposne>>
+}
+
+final class WebService: GetAllCharactersWebServiceProtocol {
 	private let apiClient: BaseNetworkClient
 	private let configurationProvider: ConfigurationProviderProtocol
 	private let keychainAccessFetcher: KeychainAccessFetcherProtocol
@@ -32,7 +36,7 @@ class WebService {
 		self.secretEncryptor = secretEncryptor
 	}
 
-//	func getAllCharacters() -> AnyPublisher<CommonResponseContainer<PagedResponse<CharacterResposne>>, Error> {
+	func getAllCharacters() async throws -> CommonResponseContainer<PagedResponse<CharacterResposne>> {
 //		return CurrentValueSubject<KeychainAccessActionResult<KeychainAccessAPIKeys>, Error>.init(keychainAccessFetcher.fetchAPIKeys())
 //			.eraseToAnyPublisher()
 //			.tryMap { result -> KeychainAccessAPIKeys in
@@ -52,7 +56,7 @@ class WebService {
 //							 parameters: Params(apikey: apiKeys.publicKey, hash: hash))
 //			})
 //			.eraseToAnyPublisher()
-//	}
+	}
 
 	private func buildUrl(for path: String) -> String {
 		return configurationProvider.baseUrl.appending(path)

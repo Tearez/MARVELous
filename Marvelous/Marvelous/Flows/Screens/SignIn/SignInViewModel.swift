@@ -41,4 +41,8 @@ final class SignInViewModel: SignInDependency, ObservableObject {
 			})
 		}
 	}
+
+	@MainActor func resetError() {
+		errorMessage = nil
+	}
 }

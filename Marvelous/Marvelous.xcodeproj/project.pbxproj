@@ -15,12 +15,13 @@
 		D8815CFC288AD9A0006FB587 /* SecretEncryptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8815CFB288AD9A0006FB587 /* SecretEncryptor.swift */; };
 		D8823DC8287454DB005D15A3 /* CommonResponseContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8823DC7287454DB005D15A3 /* CommonResponseContainer.swift */; };
 		D8823DCC28745AA2005D15A3 /* CharacterResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8823DCB28745AA2005D15A3 /* CharacterResponse.swift */; };
-		D8823DCE28746095005D15A3 /* SwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8823DCD28746095005D15A3 /* SwiftUIView.swift */; };
 		D88B3312296C4EAA00F984C6 /* SignInScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = D88B3311296C4EAA00F984C6 /* SignInScreen.swift */; };
 		D88B3314296C4FB000F984C6 /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D88B3313296C4FB000F984C6 /* SignInViewModel.swift */; };
 		D88B3316296C563A00F984C6 /* PrimaryButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D88B3315296C563A00F984C6 /* PrimaryButtonStyle.swift */; };
 		D88B3318296C5F8000F984C6 /* HasDependencyDefinition.swift in Sources */ = {isa = PBXBuildFile; fileRef = D88B3317296C5F8000F984C6 /* HasDependencyDefinition.swift */; };
 		D88B331A296C630A00F984C6 /* DependencyContainer+Screens.swift in Sources */ = {isa = PBXBuildFile; fileRef = D88B3319296C630A00F984C6 /* DependencyContainer+Screens.swift */; };
+		D88B331C296DA68000F984C6 /* RootRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D88B331B296DA68000F984C6 /* RootRouter.swift */; };
+		D88B331E296DC7B700F984C6 /* ProgressIndicatorModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = D88B331D296DC7B700F984C6 /* ProgressIndicatorModifier.swift */; };
 		D893D25527A43F4E0005B8D9 /* MarvelousApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D893D25427A43F4E0005B8D9 /* MarvelousApp.swift */; };
 		D893D25927A43F500005B8D9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D893D25827A43F500005B8D9 /* Assets.xcassets */; };
 		D893D25C27A43F500005B8D9 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D893D25B27A43F500005B8D9 /* Preview Assets.xcassets */; };
@@ -50,12 +51,13 @@
 		D8815CFB288AD9A0006FB587 /* SecretEncryptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecretEncryptor.swift; sourceTree = "<group>"; };
 		D8823DC7287454DB005D15A3 /* CommonResponseContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonResponseContainer.swift; sourceTree = "<group>"; };
 		D8823DCB28745AA2005D15A3 /* CharacterResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterResponse.swift; sourceTree = "<group>"; };
-		D8823DCD28746095005D15A3 /* SwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIView.swift; sourceTree = "<group>"; };
 		D88B3311296C4EAA00F984C6 /* SignInScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInScreen.swift; sourceTree = "<group>"; };
 		D88B3313296C4FB000F984C6 /* SignInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
 		D88B3315296C563A00F984C6 /* PrimaryButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButtonStyle.swift; sourceTree = "<group>"; };
 		D88B3317296C5F8000F984C6 /* HasDependencyDefinition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HasDependencyDefinition.swift; sourceTree = "<group>"; };
 		D88B3319296C630A00F984C6 /* DependencyContainer+Screens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DependencyContainer+Screens.swift"; sourceTree = "<group>"; };
+		D88B331B296DA68000F984C6 /* RootRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootRouter.swift; sourceTree = "<group>"; };
+		D88B331D296DC7B700F984C6 /* ProgressIndicatorModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressIndicatorModifier.swift; sourceTree = "<group>"; };
 		D893D25127A43F4E0005B8D9 /* Marvelous.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Marvelous.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D893D25427A43F4E0005B8D9 /* MarvelousApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarvelousApp.swift; sourceTree = "<group>"; };
 		D893D25827A43F500005B8D9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -128,15 +130,15 @@
 			path = WebService;
 			sourceTree = "<group>";
 		};
-		D85F9F2527A68B26002733AD /* Views */ = {
+		D85F9F2527A68B26002733AD /* Flows */ = {
 			isa = PBXGroup;
 			children = (
 				D88B330F296C4E2F00F984C6 /* Screens */,
 				D8740E6627BC010600DB5F26 /* Modifiers */,
 				D8EB445A27A974CB001A74C7 /* Styles */,
-				D8823DCD28746095005D15A3 /* SwiftUIView.swift */,
+				D88B331B296DA68000F984C6 /* RootRouter.swift */,
 			);
-			path = Views;
+			path = Flows;
 			sourceTree = "<group>";
 		};
 		D8740E5927BBDD0200DB5F26 /* Formatters */ = {
@@ -151,6 +153,7 @@
 			isa = PBXGroup;
 			children = (
 				D8740E6727BC014300DB5F26 /* CardViewModifier.swift */,
+				D88B331D296DC7B700F984C6 /* ProgressIndicatorModifier.swift */,
 			);
 			path = Modifiers;
 			sourceTree = "<group>";
@@ -222,7 +225,7 @@
 				D8EB446D27A9A0CC001A74C7 /* Models */,
 				D8EB445D27A98846001A74C7 /* Extensions */,
 				D8EC295327A68FEC0021BD77 /* DI */,
-				D85F9F2527A68B26002733AD /* Views */,
+				D85F9F2527A68B26002733AD /* Flows */,
 				D85F9F1A27A594DF002733AD /* Dependencies */,
 				D8A430DD27A4570C00C23C4E /* Generated */,
 				D893D26427A44BB70005B8D9 /* Resources */,
@@ -474,10 +477,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				D88B3316296C563A00F984C6 /* PrimaryButtonStyle.swift in Sources */,
+				D88B331C296DA68000F984C6 /* RootRouter.swift in Sources */,
 				D8815CFC288AD9A0006FB587 /* SecretEncryptor.swift in Sources */,
 				D8C745E2287193470099973C /* WebService.swift in Sources */,
+				D88B331E296DC7B700F984C6 /* ProgressIndicatorModifier.swift in Sources */,
 				D8740E5B27BBDD4400DB5F26 /* CryptoFormatter.swift in Sources */,
-				D8823DCE28746095005D15A3 /* SwiftUIView.swift in Sources */,
 				D88B3314296C4FB000F984C6 /* SignInViewModel.swift in Sources */,
 				D8C745DE28718FAC0099973C /* Colors.swift in Sources */,
 				D8C745DF28718FAC0099973C /* Assets.swift in Sources */,

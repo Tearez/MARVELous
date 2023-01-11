@@ -14,3 +14,6 @@
 "keychain_error_private_key" = "Error occured while setting private key";
 "keychain_error_unknown" = "Unknown error has occured";
 "keychain_error_fetching_keys" = "Error occured while fetching API Keys";
+
+"error_title" = "Error";
+"close_action" = "Close";

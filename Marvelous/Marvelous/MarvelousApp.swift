@@ -36,7 +36,7 @@ class VM {
 struct MarvelousApp: App {
     var body: some Scene {
         WindowGroup {
-			SwiftUIView()
+			RootRouter()
 		}
     }
 }
