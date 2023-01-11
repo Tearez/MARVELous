@@ -9,17 +9,17 @@ import Foundation
 
 // MARK: - CharacterResposne
 struct CharacterResposne: Codable {
-	let id: Int
-	let name: String
-	let resultDescription: String
-	let modified: String
-	let thumbnail: ThumbnailResponse
-	let resourceURI: String
-	let comics: ComicsResponse
-	let series: ComicsResponse
-	let stories: StoriesResponse
-	let events: ComicsResponse
-	let urls: [URLElement]
+	let id: Int?
+	let name: String?
+	let resultDescription: String?
+	let modified: String?
+	let thumbnail: ThumbnailResponse?
+	let resourceURI: String?
+	let comics: ComicsResponse?
+	let series: ComicsResponse?
+	let stories: StoriesResponse?
+	let events: ComicsResponse?
+	let urls: [URLElement]?
 
 	private enum CodingKeys: String, CodingKey {
 		case id, name
@@ -30,31 +30,30 @@ struct CharacterResposne: Codable {
 
 // MARK: - ComicsResponse
 struct ComicsResponse: Codable {
-	let available: Int
-	let collectionURI: String
-	let items: [ComicsItemResponse]
-	let returned: Int
+	let available: Int?
+	let collectionURI: String?
+	let items: [ComicsItemResponse]?
+	let returned: Int?
 }
 
 // MARK: - ComicsItemResponse
 struct ComicsItemResponse: Codable {
-	let resourceURI: String
-	let name: String
+	let resourceURI: String?
+	let name: String?
 }
 
 // MARK: - Stories
 struct StoriesResponse: Codable {
-	let available: Int
-	let collectionURI: String
-	let items: [StoryResponse]
-	let returned: Int
+	let available: Int?
+	let collectionURI: String?
+	let items: [StoryResponse]?
+	let returned: Int?
 }
 
 // MARK: - StoriesItem
 struct StoryResponse: Codable {
-	let resourceURI: String
-	let name: String
-	let type: StoryType
+	let resourceURI: String?
+	let name: String?
 }
 
 enum StoryType: String, Codable {
@@ -65,8 +64,8 @@ enum StoryType: String, Codable {
 
 // MARK: - Thumbnail
 struct ThumbnailResponse: Codable {
-	let path: String
-	let thumbnailExtension: Extension
+	let path: String?
+	let thumbnailExtension: Extension?
 
 	enum CodingKeys: String, CodingKey {
 		case path
@@ -81,8 +80,8 @@ enum Extension: String, Codable {
 
 // MARK: - URLElement
 struct URLElement: Codable {
-	let type: URLType
-	let url: String
+	let type: URLType?
+	let url: String?
 }
 
 enum URLType: String, Codable {

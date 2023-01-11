@@ -5,24 +5,26 @@
 //  Created by Martin Dimitrov on 3.07.22.
 //
 
+import Alamofire
 import Combine
 import Foundation
 import CryptoKit
 
-struct Params: Encodable {
+struct GetAllCharactersParams: Encodable {
 	let apikey: String
 	let hash: String
 	let ts: String = Date().ISO8601Format()
+	let limit: Int
+	let offset: Int
 }
 
 struct EmptyResponse: Decodable {}
 
 protocol GetAllCharactersWebServiceProtocol {
-	func getAllCharacters() async throws -> CommonResponseContainer<PagedResponse<CharacterResposne>>
+	func getAllCharacters(limit: Int, offset: Int) async throws -> CommonResponseContainer<PagedResponse<CharacterResposne>>
 }
 
 final class WebService: GetAllCharactersWebServiceProtocol {
-	private let apiClient: BaseNetworkClient
 	private let configurationProvider: ConfigurationProviderProtocol
 	private let keychainAccessFetcher: KeychainAccessFetcherProtocol
 	private let secretEncryptor: SecretEncryptorProtocol
@@ -30,32 +32,28 @@ final class WebService: GetAllCharactersWebServiceProtocol {
 	init(configurationProvider: ConfigurationProviderProtocol,
 		 keychainAccessFetcher: KeychainAccessFetcherProtocol,
 		 secretEncryptor: SecretEncryptorProtocol) {
-		self.apiClient = BaseNetworkClient()
 		self.configurationProvider = configurationProvider
 		self.keychainAccessFetcher = keychainAccessFetcher
 		self.secretEncryptor = secretEncryptor
 	}
 
-	func getAllCharacters() async throws -> CommonResponseContainer<PagedResponse<CharacterResposne>> {
-//		return CurrentValueSubject<KeychainAccessActionResult<KeychainAccessAPIKeys>, Error>.init(keychainAccessFetcher.fetchAPIKeys())
-//			.eraseToAnyPublisher()
-//			.tryMap { result -> KeychainAccessAPIKeys in
-//				switch result {
-//					case .success(let keys):
-//						return keys
-//					case .error(let error):
-//						throw error
-//				}
-//			}
-//			.flatMap(maxPublishers: .max(1), { apiKeys -> AnyPublisher<CommonResponseContainer<PagedResponse<CharacterResposne>>, Error> in
-//				let hash = self.secretEncryptor.encryptWebServiceHash(for: apiKeys.privateKey, publicKey: apiKeys.publicKey)
-//
-//				return self.apiClient
-//					.request(url: self.buildUrl(for: "/v1/public/characters"),
-//							 method: .get,
-//							 parameters: Params(apikey: apiKeys.publicKey, hash: hash))
-//			})
-//			.eraseToAnyPublisher()
+	func getAllCharacters(limit: Int, offset: Int) async throws -> CommonResponseContainer<PagedResponse<CharacterResposne>> {
+		let apiKeys = try keychainAccessFetcher.fetchAPIKeys()
+		let hash = secretEncryptor.encryptWebServiceHash(for: apiKeys.privateKey, publicKey: apiKeys.publicKey)
+
+		guard let url = URL(string: buildUrl(for: "/v1/public/characters")) else {
+			throw NSError(domain: "", code: 1)
+		}
+
+		let dataTask = AF.request(url,
+								  method: .get,
+								  parameters: GetAllCharactersParams(apikey: apiKeys.publicKey,
+																	 hash: hash,
+																	 limit: limit,
+																	 offset: offset))
+			.serializingDecodable(CommonResponseContainer<PagedResponse<CharacterResposne>>.self)
+
+		return try await dataTask.value
 	}
 
 	private func buildUrl(for path: String) -> String {

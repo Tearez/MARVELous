@@ -39,13 +39,7 @@ struct RootRouter: View {
 		case .auth:
 			SignInScreen(action: { action in handleSignInAction(action) })
 		case .home:
-			VStack {
-				Text("Home")
-				Spacer()
-				Button("Pop", action: { self.navigationPath.removeLast() })
-				Button("Push", action: { self.navigationPath.append(RootDestination.home) })
-				Button("Pop To Root", action: { self.navigationPath = NavigationPath() })
-			}
+			CharactersListScreen()
 			.toolbar(.hidden, for: .navigationBar)
 		}
 	}
