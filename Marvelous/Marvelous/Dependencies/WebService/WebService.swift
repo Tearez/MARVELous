@@ -21,7 +21,7 @@ struct GetAllCharactersParams: Encodable {
 struct EmptyResponse: Decodable {}
 
 protocol GetAllCharactersWebServiceProtocol {
-	func getAllCharacters(limit: Int, offset: Int) async throws -> CommonResponseContainer<PagedResponse<CharacterResposne>>
+	func getAllCharacters(limit: Int, offset: Int) async throws -> CommonResponseContainer<PagedResponse<CharacterResponse>>
 }
 
 final class WebService: GetAllCharactersWebServiceProtocol {
@@ -37,7 +37,7 @@ final class WebService: GetAllCharactersWebServiceProtocol {
 		self.secretEncryptor = secretEncryptor
 	}
 
-	func getAllCharacters(limit: Int, offset: Int) async throws -> CommonResponseContainer<PagedResponse<CharacterResposne>> {
+	func getAllCharacters(limit: Int, offset: Int) async throws -> CommonResponseContainer<PagedResponse<CharacterResponse>> {
 		let apiKeys = try keychainAccessFetcher.fetchAPIKeys()
 		let hash = secretEncryptor.encryptWebServiceHash(for: apiKeys.privateKey, publicKey: apiKeys.publicKey)
 
@@ -51,7 +51,7 @@ final class WebService: GetAllCharactersWebServiceProtocol {
 																	 hash: hash,
 																	 limit: limit,
 																	 offset: offset))
-			.serializingDecodable(CommonResponseContainer<PagedResponse<CharacterResposne>>.self)
+			.serializingDecodable(CommonResponseContainer<PagedResponse<CharacterResponse>>.self)
 
 		return try await dataTask.value
 	}

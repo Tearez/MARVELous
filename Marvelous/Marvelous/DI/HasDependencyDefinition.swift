@@ -22,3 +22,7 @@ protocol HasSecretEncryptor {
 protocol HasConfigurationProvider {
 	var configurationProvider: ConfigurationProviderProtocol { get }
 }
+
+protocol HasImageUrlBuilder {
+	var imageUrlBuilder: ImageUrlBuilderProtocol { get }
+}

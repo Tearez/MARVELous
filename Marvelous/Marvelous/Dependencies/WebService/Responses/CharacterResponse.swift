@@ -1,5 +1,5 @@
 //
-//  CharacterResposne.swift
+//  CharacterResponse.swift
 //  Marvelous
 //
 //  Created by Martin Dimitrov on 5.07.22.
@@ -7,8 +7,8 @@
 
 import Foundation
 
-// MARK: - CharacterResposne
-struct CharacterResposne: Codable {
+// MARK: - CharacterResponse
+struct CharacterResponse: Codable {
 	let id: Int?
 	let name: String?
 	let resultDescription: String?
@@ -54,12 +54,6 @@ struct StoriesResponse: Codable {
 struct StoryResponse: Codable {
 	let resourceURI: String?
 	let name: String?
-}
-
-enum StoryType: String, Codable {
-	case cover = "cover"
-	case empty = ""
-	case interiorStory = "interiorStory"
 }
 
 // MARK: - Thumbnail

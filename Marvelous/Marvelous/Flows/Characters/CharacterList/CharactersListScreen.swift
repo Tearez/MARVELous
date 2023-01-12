@@ -18,10 +18,7 @@ struct CharactersListScreen: View {
 		ScrollView {
 			LazyVStack(alignment: .leading) {
 				ForEach(viewModel.models) { model in
-					Text(model.name)
-						.bold()
-						.frame(maxWidth: .infinity)
-						.modifier(CardViewModifier())
+					CharacterRowView(model: model)
 						.onAppear {
 							viewModel.loadMoreContent(current: model)
 						}

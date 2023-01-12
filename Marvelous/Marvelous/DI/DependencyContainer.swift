@@ -33,28 +33,44 @@ final class DependencyContainer {
 		container.register(ConfigurationProviderProtocol.self) { _ in
 			ConfigurationProvider()
 		}.inObjectScope(.container)
+
+		container.register(ImageUrlBuilderProtocol.self) { _ in
+			ImageUrlBuilder()
+		}.inObjectScope(.transient)
 	}
 }
 
-extension DependencyContainer: HasKeychainSetter,
-							   HasKeychainAccessFetcher,
+extension DependencyContainer: HasKeychainAccessFetcher,
 							   HasSecretEncryptor,
 							   HasConfigurationProvider {
 	var keychainFetcher: KeychainAccessFetcherProtocol {
 		container.resolve(KeychainAccessFetcherProtocol.self)!
 	}
-	
+
 	var secretEncryptor: SecretEncryptorProtocol {
 		container.resolve(SecretEncryptorProtocol.self)!
 	}
-	
+
 	var configurationProvider: ConfigurationProviderProtocol {
 		container.resolve(ConfigurationProviderProtocol.self)!
 	}
-	
+}
+
+extension DependencyContainer: SignInDependency {
 	var keychainSetter: KeychainAccessSetterProtocol {
 		container.resolve(KeychainAccessSetterProtocol.self)!
 	}
 }
 
+extension DependencyContainer: CharactersListDependency {
+	var imageUrlBuilder: ImageUrlBuilderProtocol {
+		container.resolve(ImageUrlBuilderProtocol.self)!
+	}
+
+	var webService: GetAllCharactersWebServiceProtocol {
+		WebService(configurationProvider: configurationProvider,
+				   keychainAccessFetcher: keychainFetcher,
+				   secretEncryptor: secretEncryptor)
+	}
+}
 

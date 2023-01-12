@@ -7,13 +7,15 @@
 
 import Foundation
 
-protocol CharactersListDependency {
+protocol CharactersListDependency: HasImageUrlBuilder {
 	var webService: GetAllCharactersWebServiceProtocol { get }
 }
 
 struct CharactersListModel: Identifiable {
 	let id: Int
 	let name: String
+	let description: String?
+	let thumbnailUrl: URL?
 }
 
 final class CharactersListViewModel: ObservableObject {
@@ -23,6 +25,7 @@ final class CharactersListViewModel: ObservableObject {
 	}
 
 	private let webService: GetAllCharactersWebServiceProtocol
+	private let imageUrlBuilder: ImageUrlBuilderProtocol
 
 	@MainActor
 	@Published private(set) var models: [CharactersListModel] = []
@@ -31,7 +34,8 @@ final class CharactersListViewModel: ObservableObject {
 	private var page : Int = 1
 
 	init(dependency: CharactersListDependency) {
-		self.webService = dependency.webService
+		webService = dependency.webService
+		imageUrlBuilder = dependency.imageUrlBuilder
 	}
 
 	//MARK: - PAGINATION
@@ -56,17 +60,24 @@ final class CharactersListViewModel: ObservableObject {
 			let result = try await webService.getAllCharacters(limit: Constants.limit, offset: Constants.limit * (page - 1))
 			totalItems = result.data?.total ?? .zero
 
-			let mappedResult: [CharactersListModel?]? = result.data?.results?.compactMap {
-				guard let id = $0.id, let name = $0.name else {
-					return nil
-				}
-				return CharactersListModel(id: id, name: name)
+			guard let results = result.data?.results else {
+				return
 			}
 
-			await MainActor.run(body: {
-				if let unwrappedResult = mappedResult?.compactMap({ $0 }) {
-					models.append(contentsOf: unwrappedResult)
+			let mappedResults: [CharactersListModel] = results.compactMap({ item in
+				if let id = item.id, let name = item.name {
+					let thumbnailUrl: URL? = self.imageUrlBuilder.buildUrl(from: item.thumbnail?.path, item.thumbnail?.thumbnailExtension?.rawValue)
+					return CharactersListModel(id: id,
+											   name: name,
+											   description: item.resultDescription,
+											   thumbnailUrl: thumbnailUrl)
+				} else {
+					return nil
 				}
+			})
+
+			await MainActor.run(body: {
+				models.append(contentsOf: mappedResults)
 			})
 
 		} catch let error {

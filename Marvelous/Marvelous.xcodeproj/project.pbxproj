@@ -18,11 +18,12 @@
 		D88B3314296C4FB000F984C6 /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D88B3313296C4FB000F984C6 /* SignInViewModel.swift */; };
 		D88B3316296C563A00F984C6 /* PrimaryButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D88B3315296C563A00F984C6 /* PrimaryButtonStyle.swift */; };
 		D88B3318296C5F8000F984C6 /* HasDependencyDefinition.swift in Sources */ = {isa = PBXBuildFile; fileRef = D88B3317296C5F8000F984C6 /* HasDependencyDefinition.swift */; };
-		D88B331A296C630A00F984C6 /* DependencyContainer+Screens.swift in Sources */ = {isa = PBXBuildFile; fileRef = D88B3319296C630A00F984C6 /* DependencyContainer+Screens.swift */; };
 		D88B331C296DA68000F984C6 /* RootRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D88B331B296DA68000F984C6 /* RootRouter.swift */; };
 		D88B331E296DC7B700F984C6 /* ProgressIndicatorModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = D88B331D296DC7B700F984C6 /* ProgressIndicatorModifier.swift */; };
 		D88B3324296F075900F984C6 /* CharactersListScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = D88B3323296F075900F984C6 /* CharactersListScreen.swift */; };
 		D88B3326296F07B900F984C6 /* CharactersListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D88B3325296F07B900F984C6 /* CharactersListViewModel.swift */; };
+		D88B332A29700F2300F984C6 /* CharacterRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D88B332929700F2300F984C6 /* CharacterRowView.swift */; };
+		D88B332D29702CA000F984C6 /* ImageUrlBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = D88B332C29702CA000F984C6 /* ImageUrlBuilder.swift */; };
 		D893D25527A43F4E0005B8D9 /* MarvelousApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D893D25427A43F4E0005B8D9 /* MarvelousApp.swift */; };
 		D893D25927A43F500005B8D9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D893D25827A43F500005B8D9 /* Assets.xcassets */; };
 		D893D25C27A43F500005B8D9 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D893D25B27A43F500005B8D9 /* Preview Assets.xcassets */; };
@@ -55,11 +56,12 @@
 		D88B3313296C4FB000F984C6 /* SignInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
 		D88B3315296C563A00F984C6 /* PrimaryButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButtonStyle.swift; sourceTree = "<group>"; };
 		D88B3317296C5F8000F984C6 /* HasDependencyDefinition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HasDependencyDefinition.swift; sourceTree = "<group>"; };
-		D88B3319296C630A00F984C6 /* DependencyContainer+Screens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DependencyContainer+Screens.swift"; sourceTree = "<group>"; };
 		D88B331B296DA68000F984C6 /* RootRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootRouter.swift; sourceTree = "<group>"; };
 		D88B331D296DC7B700F984C6 /* ProgressIndicatorModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressIndicatorModifier.swift; sourceTree = "<group>"; };
 		D88B3323296F075900F984C6 /* CharactersListScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersListScreen.swift; sourceTree = "<group>"; };
 		D88B3325296F07B900F984C6 /* CharactersListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersListViewModel.swift; sourceTree = "<group>"; };
+		D88B332929700F2300F984C6 /* CharacterRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterRowView.swift; sourceTree = "<group>"; };
+		D88B332C29702CA000F984C6 /* ImageUrlBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUrlBuilder.swift; sourceTree = "<group>"; };
 		D893D25127A43F4E0005B8D9 /* Marvelous.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Marvelous.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D893D25427A43F4E0005B8D9 /* MarvelousApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarvelousApp.swift; sourceTree = "<group>"; };
 		D893D25827A43F500005B8D9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -112,6 +114,7 @@
 		D85F9F1A27A594DF002733AD /* Dependencies */ = {
 			isa = PBXGroup;
 			children = (
+				D88B332B29702C7E00F984C6 /* ImageUrlBuilder */,
 				D8815CFA288AD972006FB587 /* SecretHasher */,
 				D8815CF7288AC9A9006FB587 /* KeychainAccess */,
 				D8740E5927BBDD0200DB5F26 /* Formatters */,
@@ -206,10 +209,35 @@
 		D88B3320296F070E00F984C6 /* Characters */ = {
 			isa = PBXGroup;
 			children = (
+				D88B332729700EF400F984C6 /* CharacterList */,
+			);
+			path = Characters;
+			sourceTree = "<group>";
+		};
+		D88B332729700EF400F984C6 /* CharacterList */ = {
+			isa = PBXGroup;
+			children = (
+				D88B332829700F0500F984C6 /* ListRow */,
 				D88B3323296F075900F984C6 /* CharactersListScreen.swift */,
 				D88B3325296F07B900F984C6 /* CharactersListViewModel.swift */,
 			);
-			path = Characters;
+			path = CharacterList;
+			sourceTree = "<group>";
+		};
+		D88B332829700F0500F984C6 /* ListRow */ = {
+			isa = PBXGroup;
+			children = (
+				D88B332929700F2300F984C6 /* CharacterRowView.swift */,
+			);
+			path = ListRow;
+			sourceTree = "<group>";
+		};
+		D88B332B29702C7E00F984C6 /* ImageUrlBuilder */ = {
+			isa = PBXGroup;
+			children = (
+				D88B332C29702CA000F984C6 /* ImageUrlBuilder.swift */,
+			);
+			path = ImageUrlBuilder;
 			sourceTree = "<group>";
 		};
 		D893D24827A43F4E0005B8D9 = {
@@ -338,7 +366,6 @@
 			children = (
 				D8EC295427A690090021BD77 /* DependencyContainer.swift */,
 				D88B3317296C5F8000F984C6 /* HasDependencyDefinition.swift */,
-				D88B3319296C630A00F984C6 /* DependencyContainer+Screens.swift */,
 			);
 			path = DI;
 			sourceTree = "<group>";
@@ -493,12 +520,13 @@
 				D88B3312296C4EAA00F984C6 /* SignInScreen.swift in Sources */,
 				D85F9F1E27A5984D002733AD /* WebError.swift in Sources */,
 				D8740E6827BC014300DB5F26 /* CardViewModifier.swift in Sources */,
+				D88B332D29702CA000F984C6 /* ImageUrlBuilder.swift in Sources */,
 				D8EB445927A9698F001A74C7 /* ConfigurationProvider.swift in Sources */,
 				D8EB445F27A98855001A74C7 /* String+Localized.swift in Sources */,
 				D8EB446427A995C2001A74C7 /* LocalStorageProvider.swift in Sources */,
+				D88B332A29700F2300F984C6 /* CharacterRowView.swift in Sources */,
 				D8815CF9288AC9F8006FB587 /* KeychainAccess.swift in Sources */,
 				D88B3318296C5F8000F984C6 /* HasDependencyDefinition.swift in Sources */,
-				D88B331A296C630A00F984C6 /* DependencyContainer+Screens.swift in Sources */,
 				D8EC295527A690090021BD77 /* DependencyContainer.swift in Sources */,
 				D8823DCC28745AA2005D15A3 /* CharacterResponse.swift in Sources */,
 				D8823DC8287454DB005D15A3 /* CommonResponseContainer.swift in Sources */,
@@ -656,6 +684,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleLightContent;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
@@ -688,6 +717,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleLightContent;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
