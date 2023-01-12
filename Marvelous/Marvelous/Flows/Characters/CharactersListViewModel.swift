@@ -38,6 +38,9 @@ final class CharactersListViewModel: ObservableObject {
 	func loadMoreContent(current model: CharactersListModel) {
 		Task {
 			let models = await self.models
+			guard models.count > Constants.offset else {
+				return
+			}
 			let thresholdItem = models[models.endIndex - Constants.offset]
 			let offsetItemCount = (page * Constants.limit) + Constants.offset
 			if thresholdItem.id == model.id, offsetItemCount <= totalItems {
@@ -53,15 +56,14 @@ final class CharactersListViewModel: ObservableObject {
 			let result = try await webService.getAllCharacters(limit: Constants.limit, offset: Constants.limit * (page - 1))
 			totalItems = result.data?.total ?? .zero
 
-			await MainActor.run(body: {
-
-				let mappedResult: [CharactersListModel?]? = result.data?.results?.compactMap {
-					guard let id = $0.id, let name = $0.name else {
-						return nil
-					}
-					return CharactersListModel(id: id, name: name)
+			let mappedResult: [CharactersListModel?]? = result.data?.results?.compactMap {
+				guard let id = $0.id, let name = $0.name else {
+					return nil
 				}
+				return CharactersListModel(id: id, name: name)
+			}
 
+			await MainActor.run(body: {
 				if let unwrappedResult = mappedResult?.compactMap({ $0 }) {
 					models.append(contentsOf: unwrappedResult)
 				}
