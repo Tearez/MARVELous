@@ -25,6 +25,7 @@ struct CharactersListScreen: View {
 				}
 			}
 		}
+		.padding(.top, 16)
 		.task {
 			await viewModel.getAll()
 		}

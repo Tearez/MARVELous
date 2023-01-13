@@ -7,10 +7,12 @@
 
 import Foundation
 
-protocol SignInDependency: HasKeychainSetter {}
+protocol SignInDependency: HasKeychainSetter,
+						   HasKeychainAccessFetcher {}
 
 final class SignInViewModel: SignInDependency, ObservableObject {
 	let keychainSetter: KeychainAccessSetterProtocol
+	let keychainFetcher: KeychainAccessFetcherProtocol
 
 	@MainActor
 	@Published var publicKey: String = ""
@@ -20,7 +22,18 @@ final class SignInViewModel: SignInDependency, ObservableObject {
 	@Published var errorMessage: String?
 
 	init(dependency: SignInDependency) {
-		self.keychainSetter = dependency.keychainSetter
+		keychainSetter = dependency.keychainSetter
+		keychainFetcher = dependency.keychainFetcher
+	}
+
+	func checkKeychainStore() async {
+		guard let keys = try? keychainFetcher.fetchAPIKeys() else {
+			return
+		}
+		await MainActor.run(body: {
+			publicKey = keys.publicKey
+			privateKey = keys.privateKey
+		})
 	}
 
 	func signIn() async {

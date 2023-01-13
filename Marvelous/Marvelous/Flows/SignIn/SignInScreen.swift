@@ -54,6 +54,9 @@ struct SignInScreen: View {
 				Text(message)
 			})
 			.progressOverlay(shouldShowProgress)
+			.task {
+				await viewModel.checkKeychainStore()
+			}
 		}
 	}
 }

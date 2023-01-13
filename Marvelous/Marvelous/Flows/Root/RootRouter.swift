@@ -20,6 +20,7 @@ struct RootRouter: View {
 	}
 
 	@State private var navigationPath: NavigationPath
+	@State private var destinationToPresentModaly: RootDestination?
 
 	init() {
 		self._navigationPath = .init(wrappedValue: NavigationPath())
@@ -28,9 +29,17 @@ struct RootRouter: View {
 	var body: some View {
 		NavigationStack(path: $navigationPath) {
 			SignInScreen(action: { action in handleSignInAction(action) })
-			.navigationDestination(for: RootDestination.self) { destination in
-				self.handle(destination)
-			}
+				.sheet(isPresented: .constant(destinationToPresentModaly != nil),
+					   onDismiss: {
+					destinationToPresentModaly = nil
+				}, content: {
+					if let destination = destinationToPresentModaly {
+						self.handle(destination)
+					}
+				})
+				.navigationDestination(for: RootDestination.self) { destination in
+					self.handle(destination)
+				}
 		}
 	}
 
