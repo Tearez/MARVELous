@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D84A43D02971BC56001A7948 /* CharactersRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D84A43CF2971BC56001A7948 /* CharactersRouter.swift */; };
 		D85F9F1E27A5984D002733AD /* WebError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D85F9F1D27A5984D002733AD /* WebError.swift */; };
 		D8740E5B27BBDD4400DB5F26 /* CryptoFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8740E5A27BBDD4400DB5F26 /* CryptoFormatter.swift */; };
 		D8740E6827BC014300DB5F26 /* CardViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8740E6727BC014300DB5F26 /* CardViewModifier.swift */; };
@@ -30,6 +31,8 @@
 		D893D26627A44BD20005B8D9 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D893D26527A44BD20005B8D9 /* Images.xcassets */; };
 		D8BC0A5927A582820081B599 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D8BC0A5827A582820081B599 /* Colors.xcassets */; };
 		D8BC0A6127A58FCC0081B599 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D8BC0A6327A58FCC0081B599 /* Localizable.strings */; };
+		D8C513A6297835E700BD5CD5 /* CharacterCarouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C513A5297835E700BD5CD5 /* CharacterCarouselView.swift */; };
+		D8C513A9297850FE00BD5CD5 /* AsyncImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C513A8297850FE00BD5CD5 /* AsyncImageView.swift */; };
 		D8C745DE28718FAC0099973C /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C745DC28718FAC0099973C /* Colors.swift */; };
 		D8C745DF28718FAC0099973C /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C745DD28718FAC0099973C /* Assets.swift */; };
 		D8C745E2287193470099973C /* WebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C745E1287193470099973C /* WebService.swift */; };
@@ -45,6 +48,7 @@
 		00E0057220A5DDF0C9D784A1 /* Pods-Marvelous.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Marvelous.debug.xcconfig"; path = "Target Support Files/Pods-Marvelous/Pods-Marvelous.debug.xcconfig"; sourceTree = "<group>"; };
 		9E690BEB698637AD9B88039D /* Pods_Marvelous.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Marvelous.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFDFEDB3C8C12D6EC1CA0AF7 /* Pods-Marvelous.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Marvelous.release.xcconfig"; path = "Target Support Files/Pods-Marvelous/Pods-Marvelous.release.xcconfig"; sourceTree = "<group>"; };
+		D84A43CF2971BC56001A7948 /* CharactersRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersRouter.swift; sourceTree = "<group>"; };
 		D85F9F1D27A5984D002733AD /* WebError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebError.swift; sourceTree = "<group>"; };
 		D8740E5A27BBDD4400DB5F26 /* CryptoFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoFormatter.swift; sourceTree = "<group>"; };
 		D8740E6727BC014300DB5F26 /* CardViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewModifier.swift; sourceTree = "<group>"; };
@@ -70,6 +74,8 @@
 		D893D26527A44BD20005B8D9 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		D8BC0A5827A582820081B599 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		D8BC0A6227A58FCC0081B599 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		D8C513A5297835E700BD5CD5 /* CharacterCarouselView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterCarouselView.swift; sourceTree = "<group>"; };
+		D8C513A8297850FE00BD5CD5 /* AsyncImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncImageView.swift; sourceTree = "<group>"; };
 		D8C745DC28718FAC0099973C /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Colors.swift; path = Marvelous/SwiftGenOutput/Colors.swift; sourceTree = SOURCE_ROOT; };
 		D8C745DD28718FAC0099973C /* Assets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Assets.swift; path = Marvelous/SwiftGenOutput/Assets.swift; sourceTree = SOURCE_ROOT; };
 		D8C745E0287191E10099973C /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
@@ -210,6 +216,7 @@
 			isa = PBXGroup;
 			children = (
 				D88B332729700EF400F984C6 /* CharacterList */,
+				D84A43CF2971BC56001A7948 /* CharactersRouter.swift */,
 			);
 			path = Characters;
 			sourceTree = "<group>";
@@ -217,6 +224,7 @@
 		D88B332729700EF400F984C6 /* CharacterList */ = {
 			isa = PBXGroup;
 			children = (
+				D8C513A4297835AF00BD5CD5 /* CarouselView */,
 				D88B332829700F0500F984C6 /* ListRow */,
 				D88B3323296F075900F984C6 /* CharactersListScreen.swift */,
 				D88B3325296F07B900F984C6 /* CharactersListViewModel.swift */,
@@ -262,6 +270,7 @@
 		D893D25327A43F4E0005B8D9 /* Marvelous */ = {
 			isa = PBXGroup;
 			children = (
+				D8C513A7297850CD00BD5CD5 /* ReusableViews */,
 				D8EB445D27A98846001A74C7 /* Extensions */,
 				D8EC295327A68FEC0021BD77 /* DI */,
 				D85F9F2527A68B26002733AD /* Flows */,
@@ -309,6 +318,22 @@
 				D8BC0A6327A58FCC0081B599 /* Localizable.strings */,
 			);
 			path = Strings;
+			sourceTree = "<group>";
+		};
+		D8C513A4297835AF00BD5CD5 /* CarouselView */ = {
+			isa = PBXGroup;
+			children = (
+				D8C513A5297835E700BD5CD5 /* CharacterCarouselView.swift */,
+			);
+			path = CarouselView;
+			sourceTree = "<group>";
+		};
+		D8C513A7297850CD00BD5CD5 /* ReusableViews */ = {
+			isa = PBXGroup;
+			children = (
+				D8C513A8297850FE00BD5CD5 /* AsyncImageView.swift */,
+			);
+			path = ReusableViews;
 			sourceTree = "<group>";
 		};
 		D8EB445527A966FC001A74C7 /* Config */ = {
@@ -516,13 +541,16 @@
 				D88B3314296C4FB000F984C6 /* SignInViewModel.swift in Sources */,
 				D8C745DE28718FAC0099973C /* Colors.swift in Sources */,
 				D8C745DF28718FAC0099973C /* Assets.swift in Sources */,
+				D84A43D02971BC56001A7948 /* CharactersRouter.swift in Sources */,
 				D893D25527A43F4E0005B8D9 /* MarvelousApp.swift in Sources */,
 				D88B3312296C4EAA00F984C6 /* SignInScreen.swift in Sources */,
+				D8C513A9297850FE00BD5CD5 /* AsyncImageView.swift in Sources */,
 				D85F9F1E27A5984D002733AD /* WebError.swift in Sources */,
 				D8740E6827BC014300DB5F26 /* CardViewModifier.swift in Sources */,
 				D88B332D29702CA000F984C6 /* ImageUrlBuilder.swift in Sources */,
 				D8EB445927A9698F001A74C7 /* ConfigurationProvider.swift in Sources */,
 				D8EB445F27A98855001A74C7 /* String+Localized.swift in Sources */,
+				D8C513A6297835E700BD5CD5 /* CharacterCarouselView.swift in Sources */,
 				D8EB446427A995C2001A74C7 /* LocalStorageProvider.swift in Sources */,
 				D88B332A29700F2300F984C6 /* CharacterRowView.swift in Sources */,
 				D8815CF9288AC9F8006FB587 /* KeychainAccess.swift in Sources */,

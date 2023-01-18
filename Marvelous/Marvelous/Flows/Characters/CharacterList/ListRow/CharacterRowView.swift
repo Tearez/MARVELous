@@ -16,7 +16,9 @@ struct CharacterRowView: View {
 
 	var body: some View {
 		HStack {
-			image
+			AsyncImageView(url: model.thumbnailUrl)
+				.frame(width: 50, height: 50)
+				.cornerRadius(10)
 			VStack(alignment: .leading) {
 				Text(model.name)
 					.font(.system(size: 20))
@@ -33,28 +35,6 @@ struct CharacterRowView: View {
 		}
 		.frame(maxWidth: .infinity)
 		.modifier(CardViewModifier(backgroundColor: Colors.primary.uiColor.color))
-	}
-
-	private var image: some View {
-		ZStack {
-			if let thumbnailUrl = model.thumbnailUrl {
-				AsyncImage(url: thumbnailUrl, content: { image in
-					image
-						.resizable()
-						.aspectRatio(contentMode: .fit)
-				}, placeholder: {
-					Image(systemName: "person.crop.square.filled.and.at.rectangle")
-						.resizable()
-						.aspectRatio(contentMode: .fit)
-				})
-			} else {
-				Image(systemName: "person.crop.square.filled.and.at.rectangle")
-					.resizable()
-					.aspectRatio(contentMode: .fit)
-			}
-		}
-		.frame(width: 50, height: 50)
-		.cornerRadius(10)
 	}
 }
 
