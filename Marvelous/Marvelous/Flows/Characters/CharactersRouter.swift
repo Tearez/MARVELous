@@ -33,6 +33,7 @@ struct CharactersRouter: View {
 				})
 				.navigationDestination(for: CharactersDestination.self) { destination in
 					self.handle(destination)
+						.toolbarBackground(.hidden, for: .navigationBar)
 				}
 		}
 	}
@@ -41,7 +42,6 @@ struct CharactersRouter: View {
 		switch destination {
 		case .list:
 			CharactersListScreen()
-				.toolbarBackground(.hidden, for: .navigationBar)
 		case .details:
 			EmptyView()
 		}

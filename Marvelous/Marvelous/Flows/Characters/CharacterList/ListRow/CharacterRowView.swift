@@ -7,10 +7,17 @@
 
 import SwiftUI
 
-struct CharacterRowView: View {
-	private let model: CharactersListModel
+struct CharacterRowModel: Identifiable {
+	let id: Int
+	let name: String
+	let description: String?
+	let thumbnailUrl: URL?
+}
 
-	init(model: CharactersListModel) {
+struct CharacterRowView: View {
+	private let model: CharacterRowModel
+
+	init(model: CharacterRowModel) {
 		self.model = model
 	}
 

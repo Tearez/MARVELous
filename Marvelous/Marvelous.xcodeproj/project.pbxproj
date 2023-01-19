@@ -33,6 +33,10 @@
 		D8BC0A6127A58FCC0081B599 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D8BC0A6327A58FCC0081B599 /* Localizable.strings */; };
 		D8C513A6297835E700BD5CD5 /* CharacterCarouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C513A5297835E700BD5CD5 /* CharacterCarouselView.swift */; };
 		D8C513A9297850FE00BD5CD5 /* AsyncImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C513A8297850FE00BD5CD5 /* AsyncImageView.swift */; };
+		D8C513AB29792F4100BD5CD5 /* LoadingTaskModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C513AA29792F4100BD5CD5 /* LoadingTaskModifier.swift */; };
+		D8C513AE2979377C00BD5CD5 /* ToggleStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C513AD2979377C00BD5CD5 /* ToggleStyle.swift */; };
+		D8C513B129794D7A00BD5CD5 /* CharacterDetailsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C513B029794D7A00BD5CD5 /* CharacterDetailsScreen.swift */; };
+		D8C513B32979603000BD5CD5 /* CharacterDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C513B22979603000BD5CD5 /* CharacterDetailsViewModel.swift */; };
 		D8C745DE28718FAC0099973C /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C745DC28718FAC0099973C /* Colors.swift */; };
 		D8C745DF28718FAC0099973C /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C745DD28718FAC0099973C /* Assets.swift */; };
 		D8C745E2287193470099973C /* WebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C745E1287193470099973C /* WebService.swift */; };
@@ -76,6 +80,10 @@
 		D8BC0A6227A58FCC0081B599 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		D8C513A5297835E700BD5CD5 /* CharacterCarouselView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterCarouselView.swift; sourceTree = "<group>"; };
 		D8C513A8297850FE00BD5CD5 /* AsyncImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncImageView.swift; sourceTree = "<group>"; };
+		D8C513AA29792F4100BD5CD5 /* LoadingTaskModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingTaskModifier.swift; sourceTree = "<group>"; };
+		D8C513AD2979377C00BD5CD5 /* ToggleStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleStyle.swift; sourceTree = "<group>"; };
+		D8C513B029794D7A00BD5CD5 /* CharacterDetailsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetailsScreen.swift; sourceTree = "<group>"; };
+		D8C513B22979603000BD5CD5 /* CharacterDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetailsViewModel.swift; sourceTree = "<group>"; };
 		D8C745DC28718FAC0099973C /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Colors.swift; path = Marvelous/SwiftGenOutput/Colors.swift; sourceTree = SOURCE_ROOT; };
 		D8C745DD28718FAC0099973C /* Assets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Assets.swift; path = Marvelous/SwiftGenOutput/Assets.swift; sourceTree = SOURCE_ROOT; };
 		D8C745E0287191E10099973C /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
@@ -166,6 +174,7 @@
 			children = (
 				D8740E6727BC014300DB5F26 /* CardViewModifier.swift */,
 				D88B331D296DC7B700F984C6 /* ProgressIndicatorModifier.swift */,
+				D8C513AA29792F4100BD5CD5 /* LoadingTaskModifier.swift */,
 			);
 			path = Modifiers;
 			sourceTree = "<group>";
@@ -215,6 +224,7 @@
 		D88B3320296F070E00F984C6 /* Characters */ = {
 			isa = PBXGroup;
 			children = (
+				D8C513AF29794D1400BD5CD5 /* CharacterDetails */,
 				D88B332729700EF400F984C6 /* CharacterList */,
 				D84A43CF2971BC56001A7948 /* CharactersRouter.swift */,
 			);
@@ -336,6 +346,15 @@
 			path = ReusableViews;
 			sourceTree = "<group>";
 		};
+		D8C513AF29794D1400BD5CD5 /* CharacterDetails */ = {
+			isa = PBXGroup;
+			children = (
+				D8C513B029794D7A00BD5CD5 /* CharacterDetailsScreen.swift */,
+				D8C513B22979603000BD5CD5 /* CharacterDetailsViewModel.swift */,
+			);
+			path = CharacterDetails;
+			sourceTree = "<group>";
+		};
 		D8EB445527A966FC001A74C7 /* Config */ = {
 			isa = PBXGroup;
 			children = (
@@ -358,6 +377,7 @@
 			children = (
 				D8EB445B27A974E5001A74C7 /* ScaledButtonStyle.swift */,
 				D88B3315296C563A00F984C6 /* PrimaryButtonStyle.swift */,
+				D8C513AD2979377C00BD5CD5 /* ToggleStyle.swift */,
 			);
 			path = Styles;
 			sourceTree = "<group>";
@@ -535,9 +555,11 @@
 				D88B3324296F075900F984C6 /* CharactersListScreen.swift in Sources */,
 				D88B331C296DA68000F984C6 /* RootRouter.swift in Sources */,
 				D8815CFC288AD9A0006FB587 /* SecretEncryptor.swift in Sources */,
+				D8C513B129794D7A00BD5CD5 /* CharacterDetailsScreen.swift in Sources */,
 				D8C745E2287193470099973C /* WebService.swift in Sources */,
 				D88B331E296DC7B700F984C6 /* ProgressIndicatorModifier.swift in Sources */,
 				D8740E5B27BBDD4400DB5F26 /* CryptoFormatter.swift in Sources */,
+				D8C513B32979603000BD5CD5 /* CharacterDetailsViewModel.swift in Sources */,
 				D88B3314296C4FB000F984C6 /* SignInViewModel.swift in Sources */,
 				D8C745DE28718FAC0099973C /* Colors.swift in Sources */,
 				D8C745DF28718FAC0099973C /* Assets.swift in Sources */,
@@ -549,12 +571,14 @@
 				D8740E6827BC014300DB5F26 /* CardViewModifier.swift in Sources */,
 				D88B332D29702CA000F984C6 /* ImageUrlBuilder.swift in Sources */,
 				D8EB445927A9698F001A74C7 /* ConfigurationProvider.swift in Sources */,
+				D8C513AE2979377C00BD5CD5 /* ToggleStyle.swift in Sources */,
 				D8EB445F27A98855001A74C7 /* String+Localized.swift in Sources */,
 				D8C513A6297835E700BD5CD5 /* CharacterCarouselView.swift in Sources */,
 				D8EB446427A995C2001A74C7 /* LocalStorageProvider.swift in Sources */,
 				D88B332A29700F2300F984C6 /* CharacterRowView.swift in Sources */,
 				D8815CF9288AC9F8006FB587 /* KeychainAccess.swift in Sources */,
 				D88B3318296C5F8000F984C6 /* HasDependencyDefinition.swift in Sources */,
+				D8C513AB29792F4100BD5CD5 /* LoadingTaskModifier.swift in Sources */,
 				D8EC295527A690090021BD77 /* DependencyContainer.swift in Sources */,
 				D8823DCC28745AA2005D15A3 /* CharacterResponse.swift in Sources */,
 				D8823DC8287454DB005D15A3 /* CommonResponseContainer.swift in Sources */,

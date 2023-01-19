@@ -48,7 +48,7 @@ struct RootRouter: View {
 		case .auth:
 			SignInScreen(action: { action in handleSignInAction(action) })
 		case .home:
-			CharactersListScreen()
+			CharactersRouter()
 			.toolbar(.hidden, for: .navigationBar)
 		}
 	}

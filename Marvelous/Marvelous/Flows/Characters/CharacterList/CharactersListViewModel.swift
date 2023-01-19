@@ -11,11 +11,21 @@ protocol CharactersListDependency: HasImageUrlBuilder {
 	var webService: GetAllCharactersWebServiceProtocol { get }
 }
 
+struct ComicModel {
+	let url: URL?
+	let name: String?
+}
+
 struct CharactersListModel: Identifiable {
 	let id: Int
 	let name: String
 	let description: String?
 	let thumbnailUrl: URL?
+	let updated: String?
+	let comics: [ComicModel]?
+	let stories: [ComicModel]?
+	let series: [ComicModel]?
+	let events: [ComicModel]?
 }
 
 final class CharactersListViewModel: ObservableObject {
@@ -70,7 +80,12 @@ final class CharactersListViewModel: ObservableObject {
 					return CharactersListModel(id: id,
 											   name: name,
 											   description: item.resultDescription,
-											   thumbnailUrl: thumbnailUrl)
+											   thumbnailUrl: thumbnailUrl,
+											   updated: item.modified,
+											   comics: item.comics.flatMap { $0.items }?.map { ComicModel(url: self.imageUrlBuilder.buildUrl(from: $0.resourceURI, nil), name: $0.name) },
+											   stories: item.stories.flatMap { $0.items }?.map { ComicModel(url: self.imageUrlBuilder.buildUrl(from: $0.resourceURI, nil), name: $0.name) },
+											   series: item.series.flatMap { $0.items }?.map { ComicModel(url: self.imageUrlBuilder.buildUrl(from: $0.resourceURI, nil), name: $0.name) },
+											   events: item.events.flatMap { $0.items }?.map { ComicModel(url: self.imageUrlBuilder.buildUrl(from: $0.resourceURI, nil), name: $0.name) })
 				} else {
 					return nil
 				}

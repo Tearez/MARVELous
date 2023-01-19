@@ -9,14 +9,27 @@ import SwiftUI
 
 struct CharactersListScreen: View {
 	@StateObject private var viewModel: CharactersListViewModel
+	@State private var shouldShowCarousel: Bool = false
 
 	init() {
 		self._viewModel = .init(wrappedValue: .init(dependency: DependencyContainer.shared))
 	}
 
 	var body: some View {
-		list
-		.task {
+		VStack(alignment: .center, spacing: 16) {
+			HStack(alignment: .top) {
+				Toggle("", isOn: $shouldShowCarousel)
+					.labelsHidden()
+					.tint(Colors.primary.uiColor.color)
+					.toggleStyle(ListCarouselToggleStyle())
+			}
+			if shouldShowCarousel {
+				carousel
+			} else {
+				list
+			}
+		}
+		.loadingTask {
 			await viewModel.getAll()
 		}
 	}
@@ -25,7 +38,10 @@ struct CharactersListScreen: View {
 		ScrollView {
 			LazyVStack(alignment: .leading) {
 				ForEach(viewModel.models) { model in
-					CharacterRowView(model: model)
+					CharacterRowView(model: CharacterRowModel(id: model.id,
+															  name: model.name,
+															  description: model.description,
+															  thumbnailUrl: model.thumbnailUrl))
 						.onAppear {
 							viewModel.loadMoreContent(current: model)
 						}
