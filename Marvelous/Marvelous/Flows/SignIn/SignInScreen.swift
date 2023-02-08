@@ -7,17 +7,13 @@
 
 import SwiftUI
 
-enum SignInAction {
-	case signInSuccessfully
-}
-
 struct SignInScreen: View {
 	@StateObject private var viewModel: SignInViewModel
 	@State private var shouldShowProgress = false
 	private let action: (SignInAction) -> Void
 
-	init(action: @escaping (SignInAction) -> Void) {
-		self._viewModel = StateObject(wrappedValue: SignInViewModel(dependency: DependencyContainer.shared))
+	init(viewModel: SignInViewModel, action: @escaping (SignInAction) -> Void) {
+		self._viewModel = StateObject(wrappedValue: viewModel)
 		self.action = action
 	}
 
@@ -58,11 +54,5 @@ struct SignInScreen: View {
 				await viewModel.checkKeychainStore()
 			}
 		}
-	}
-}
-
-struct SignInScreen_Previews: PreviewProvider {
-	static var previews: some View {
-		SignInScreen(action: { _ in })
 	}
 }

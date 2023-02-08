@@ -18,7 +18,11 @@ final class LocalStorageProvider: StorageProviderProtocol {
 		case authorizationToken = "AUTHORIZATION_TOKEN"
 	}
 
-	private let userDefaults = UserDefaults.standard
+	private let userDefaults: UserDefaults
+
+	init(userDefaults: UserDefaults) {
+		self.userDefaults = userDefaults
+	}
 
 	var authorizationToken: String? {
 		get {

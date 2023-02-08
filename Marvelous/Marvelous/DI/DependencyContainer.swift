@@ -6,45 +6,42 @@
 //
 
 import Foundation
+import SwiftUI
 import Swinject
+
+protocol MainDependency: HasKeychainSetter,
+						 HasKeychainAccessFetcher,
+						 HasSecretEncryptor,
+						 HasConfigurationProvider,
+						 HasImageUrlBuilder,
+						 HasNavigationPath {}
 
 final class DependencyContainer {
 	static let shared: DependencyContainer = .init()
 
 	private let container: Container = .init()
+	private let assembler: Assembler
 
-	private init() {
-		register()
-	}
-
-	private func register() {
-		container.register(KeychainAccessSetterProtocol.self) { _ in
-			KeychainAccess()
-		}.inObjectScope(.container)
-
-		container.register(KeychainAccessFetcherProtocol.self) { _ in
-			KeychainAccess()
-		}.inObjectScope(.container)
-
-		container.register(SecretEncryptorProtocol.self) { _ in
-			SecretEncryptor()
-		}.inObjectScope(.container)
-
-		container.register(ConfigurationProviderProtocol.self) { _ in
-			ConfigurationProvider()
-		}.inObjectScope(.container)
-
-		container.register(ImageUrlBuilderProtocol.self) { _ in
-			ImageUrlBuilder()
-		}.inObjectScope(.transient)
+	init() {
+		assembler = .init(
+			[
+				NavigationAssembly(),
+				HelperAssembly(),
+				StorageAssembly(),
+				NetworkAssembly()
+			],
+			container: container
+		)
 	}
 }
 
-extension DependencyContainer: HasKeychainAccessFetcher,
-							   HasSecretEncryptor,
-							   HasConfigurationProvider {
+extension DependencyContainer: MainDependency {
 	var keychainFetcher: KeychainAccessFetcherProtocol {
 		container.resolve(KeychainAccessFetcherProtocol.self)!
+	}
+
+	var keychainSetter: KeychainAccessSetterProtocol {
+		container.resolve(KeychainAccessSetterProtocol.self)!
 	}
 
 	var secretEncryptor: SecretEncryptorProtocol {
@@ -54,23 +51,21 @@ extension DependencyContainer: HasKeychainAccessFetcher,
 	var configurationProvider: ConfigurationProviderProtocol {
 		container.resolve(ConfigurationProviderProtocol.self)!
 	}
-}
 
-extension DependencyContainer: SignInDependency {
-	var keychainSetter: KeychainAccessSetterProtocol {
-		container.resolve(KeychainAccessSetterProtocol.self)!
-	}
-}
-
-extension DependencyContainer: CharactersListDependency {
 	var imageUrlBuilder: ImageUrlBuilderProtocol {
 		container.resolve(ImageUrlBuilderProtocol.self)!
 	}
 
+	var navigationPath: NavigationPath {
+		container.resolve(NavigationPath.self)!
+	}
+}
+
+extension DependencyContainer: SignInDependency {}
+
+extension DependencyContainer: CharactersListDependency {
 	var webService: GetAllCharactersWebServiceProtocol {
-		WebService(configurationProvider: configurationProvider,
-				   keychainAccessFetcher: keychainFetcher,
-				   secretEncryptor: secretEncryptor)
+		container.resolve(GetAllCharactersWebServiceProtocol.self)!
 	}
 }
 

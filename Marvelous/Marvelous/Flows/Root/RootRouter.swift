@@ -13,30 +13,29 @@ enum NavigationStep {
 	case popToRoot
 }
 
+enum RootDestination: Hashable {
+	case auth
+	case home
+}
+
 struct RootRouter: View {
-	private enum RootDestination: Hashable {
-		case auth
-		case home
+	private struct Builders {
+		let signInBuildable: any SignInBuildable
 	}
 
+	private let builders: Builders
+
 	@State private var navigationPath: NavigationPath
-	@State private var destinationToPresentModaly: RootDestination?
 
 	init() {
-		self._navigationPath = .init(wrappedValue: NavigationPath())
+		let dependency = DependencyContainer()
+		self.builders = .init(signInBuildable: SignInBuilder(dependency: dependency))
+		self._navigationPath = .init(wrappedValue: dependency.navigationPath)
 	}
 
 	var body: some View {
 		NavigationStack(path: $navigationPath) {
-			SignInScreen(action: { action in handleSignInAction(action) })
-				.sheet(isPresented: .constant(destinationToPresentModaly != nil),
-					   onDismiss: {
-					destinationToPresentModaly = nil
-				}, content: {
-					if let destination = destinationToPresentModaly {
-						self.handle(destination)
-					}
-				})
+			builders.signInBuildable.build(action: { action in handleSignInAction(action) })
 				.navigationDestination(for: RootDestination.self) { destination in
 					self.handle(destination)
 				}
@@ -46,11 +45,15 @@ struct RootRouter: View {
 	@ViewBuilder private func handle(_ destination: RootDestination) -> some View {
 		switch destination {
 		case .auth:
-			SignInScreen(action: { action in handleSignInAction(action) })
+			builders.signInBuildable.build(action: { action in handleSignInAction(action) })
 		case .home:
-			CharactersRouter()
+			CharactersListScreen()
 			.toolbar(.hidden, for: .navigationBar)
 		}
+	}
+
+	var singInScreen: some View {
+		builders.signInBuildable.build(action: { action in handleSignInAction(action) })
 	}
 
 	private func handleSignInAction(_ action: SignInAction) {

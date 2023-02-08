@@ -3,14 +3,17 @@ PODS:
   - KeychainAccess (4.2.2)
   - Kingfisher (7.5.0)
   - SwiftGen (6.5.1)
-  - Swinject (2.8.1)
+  - Swinject (2.8.3)
+  - SwinjectAutoregistration (2.8.3):
+    - Swinject (~> 2.8.3)
 
 DEPENDENCIES:
   - Alamofire (~> 5.6.4)
   - KeychainAccess (~> 4.2.2)
   - Kingfisher (~> 7.0)
   - SwiftGen (~> 6.0)
-  - Swinject (~> 2.8.1)
+  - Swinject (~> 2.8.3)
+  - SwinjectAutoregistration (= 2.8.3)
 
 SPEC REPOS:
   https://cdn.cocoapods.org/:
@@ -19,14 +22,16 @@ SPEC REPOS:
     - Kingfisher
     - SwiftGen
     - Swinject
+    - SwinjectAutoregistration
 
 SPEC CHECKSUMS:
   Alamofire: 4e95d97098eacb88856099c4fc79b526a299e48c
   KeychainAccess: c0c4f7f38f6fc7bbe58f5702e25f7bd2f65abf51
   Kingfisher: b9c2a4a4af2990a768445c277359b27bde287d71
   SwiftGen: a6d22010845f08fe18fbdf3a07a8e380fd22e0ea
-  Swinject: 97112918bd7e0785dc2df7036213f3c8cbba6586
+  Swinject: 893c9a543000ac2f10ee4cbaf0933c6992c935d5
+  SwinjectAutoregistration: e3ee378dc458acf78d176fc7fec3902603452667
 
-PODFILE CHECKSUM: fe27be5acada0a4f36d47f314a88417fc80fe88b
+PODFILE CHECKSUM: 918d2e50a80ef67ecbd3ddb2028ac4ca236838d1
 
 COCOAPODS: 1.11.2

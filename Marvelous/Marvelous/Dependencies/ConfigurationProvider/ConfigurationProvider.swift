@@ -15,7 +15,7 @@ final class ConfigurationProvider: ConfigurationProviderProtocol {
 
 	let bundle: Bundle
 
-	init(bundle: Bundle = Bundle.main) {
+	init(bundle: Bundle) {
 		self.bundle = bundle
 	}
 

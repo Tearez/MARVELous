@@ -8,8 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		D84A43D02971BC56001A7948 /* CharactersRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D84A43CF2971BC56001A7948 /* CharactersRouter.swift */; };
+		D850DE2B2993DCBC0023D9BC /* NavigationAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = D850DE2A2993DCBC0023D9BC /* NavigationAssembly.swift */; };
 		D85F9F1E27A5984D002733AD /* WebError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D85F9F1D27A5984D002733AD /* WebError.swift */; };
-		D8740E5B27BBDD4400DB5F26 /* CryptoFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8740E5A27BBDD4400DB5F26 /* CryptoFormatter.swift */; };
 		D8740E6827BC014300DB5F26 /* CardViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8740E6727BC014300DB5F26 /* CardViewModifier.swift */; };
 		D8815CF9288AC9F8006FB587 /* KeychainAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8815CF8288AC9F8006FB587 /* KeychainAccess.swift */; };
 		D8815CFC288AD9A0006FB587 /* SecretEncryptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8815CFB288AD9A0006FB587 /* SecretEncryptor.swift */; };
@@ -45,6 +45,11 @@
 		D8EB445F27A98855001A74C7 /* String+Localized.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8EB445E27A98855001A74C7 /* String+Localized.swift */; };
 		D8EB446427A995C2001A74C7 /* LocalStorageProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8EB446327A995C2001A74C7 /* LocalStorageProvider.swift */; };
 		D8EC295527A690090021BD77 /* DependencyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8EC295427A690090021BD77 /* DependencyContainer.swift */; };
+		D8F08AB329929D1400170D5D /* HelperAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F08AB229929D1400170D5D /* HelperAssembly.swift */; };
+		D8F08AB529929EFC00170D5D /* StorageAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F08AB429929EFC00170D5D /* StorageAssembly.swift */; };
+		D8F08AB72992A77900170D5D /* NetworkAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F08AB62992A77900170D5D /* NetworkAssembly.swift */; };
+		D8F08ABA2992ACEC00170D5D /* Buildable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F08AB92992ACEC00170D5D /* Buildable.swift */; };
+		D8F08ABC2992AEF600170D5D /* SignInBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F08ABB2992AEF600170D5D /* SignInBuilder.swift */; };
 		EE87FC913328FE93B8BB5C02 /* Pods_Marvelous.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E690BEB698637AD9B88039D /* Pods_Marvelous.framework */; };
 /* End PBXBuildFile section */
 
@@ -53,8 +58,8 @@
 		9E690BEB698637AD9B88039D /* Pods_Marvelous.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Marvelous.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFDFEDB3C8C12D6EC1CA0AF7 /* Pods-Marvelous.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Marvelous.release.xcconfig"; path = "Target Support Files/Pods-Marvelous/Pods-Marvelous.release.xcconfig"; sourceTree = "<group>"; };
 		D84A43CF2971BC56001A7948 /* CharactersRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersRouter.swift; sourceTree = "<group>"; };
+		D850DE2A2993DCBC0023D9BC /* NavigationAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationAssembly.swift; sourceTree = "<group>"; };
 		D85F9F1D27A5984D002733AD /* WebError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebError.swift; sourceTree = "<group>"; };
-		D8740E5A27BBDD4400DB5F26 /* CryptoFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoFormatter.swift; sourceTree = "<group>"; };
 		D8740E6727BC014300DB5F26 /* CardViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewModifier.swift; sourceTree = "<group>"; };
 		D8815CF8288AC9F8006FB587 /* KeychainAccess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainAccess.swift; sourceTree = "<group>"; };
 		D8815CFB288AD9A0006FB587 /* SecretEncryptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecretEncryptor.swift; sourceTree = "<group>"; };
@@ -94,6 +99,11 @@
 		D8EB445E27A98855001A74C7 /* String+Localized.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Localized.swift"; sourceTree = "<group>"; };
 		D8EB446327A995C2001A74C7 /* LocalStorageProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalStorageProvider.swift; sourceTree = "<group>"; };
 		D8EC295427A690090021BD77 /* DependencyContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependencyContainer.swift; sourceTree = "<group>"; };
+		D8F08AB229929D1400170D5D /* HelperAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelperAssembly.swift; sourceTree = "<group>"; };
+		D8F08AB429929EFC00170D5D /* StorageAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageAssembly.swift; sourceTree = "<group>"; };
+		D8F08AB62992A77900170D5D /* NetworkAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkAssembly.swift; sourceTree = "<group>"; };
+		D8F08AB92992ACEC00170D5D /* Buildable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Buildable.swift; sourceTree = "<group>"; };
+		D8F08ABB2992AEF600170D5D /* SignInBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInBuilder.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,7 +141,6 @@
 				D88B332B29702C7E00F984C6 /* ImageUrlBuilder */,
 				D8815CFA288AD972006FB587 /* SecretHasher */,
 				D8815CF7288AC9A9006FB587 /* KeychainAccess */,
-				D8740E5927BBDD0200DB5F26 /* Formatters */,
 				D8EB446227A99562001A74C7 /* LocalStorage */,
 				D8EB445727A9695D001A74C7 /* ConfigurationProvider */,
 				D85F9F1F27A5995E002733AD /* WebService */,
@@ -159,14 +168,6 @@
 				D8EB445A27A974CB001A74C7 /* Styles */,
 			);
 			path = Flows;
-			sourceTree = "<group>";
-		};
-		D8740E5927BBDD0200DB5F26 /* Formatters */ = {
-			isa = PBXGroup;
-			children = (
-				D8740E5A27BBDD4400DB5F26 /* CryptoFormatter.swift */,
-			);
-			path = Formatters;
 			sourceTree = "<group>";
 		};
 		D8740E6627BC010600DB5F26 /* Modifiers */ = {
@@ -209,6 +210,7 @@
 			children = (
 				D88B3311296C4EAA00F984C6 /* SignInScreen.swift */,
 				D88B3313296C4FB000F984C6 /* SignInViewModel.swift */,
+				D8F08ABB2992AEF600170D5D /* SignInBuilder.swift */,
 			);
 			path = SignIn;
 			sourceTree = "<group>";
@@ -409,10 +411,31 @@
 		D8EC295327A68FEC0021BD77 /* DI */ = {
 			isa = PBXGroup;
 			children = (
+				D8F08AB82992ACDE00170D5D /* Helpers */,
+				D8F08AB129929CB700170D5D /* Assemblies */,
 				D8EC295427A690090021BD77 /* DependencyContainer.swift */,
 				D88B3317296C5F8000F984C6 /* HasDependencyDefinition.swift */,
 			);
 			path = DI;
+			sourceTree = "<group>";
+		};
+		D8F08AB129929CB700170D5D /* Assemblies */ = {
+			isa = PBXGroup;
+			children = (
+				D8F08AB229929D1400170D5D /* HelperAssembly.swift */,
+				D8F08AB429929EFC00170D5D /* StorageAssembly.swift */,
+				D8F08AB62992A77900170D5D /* NetworkAssembly.swift */,
+				D850DE2A2993DCBC0023D9BC /* NavigationAssembly.swift */,
+			);
+			path = Assemblies;
+			sourceTree = "<group>";
+		};
+		D8F08AB82992ACDE00170D5D /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				D8F08AB92992ACEC00170D5D /* Buildable.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -558,8 +581,9 @@
 				D8C513B129794D7A00BD5CD5 /* CharacterDetailsScreen.swift in Sources */,
 				D8C745E2287193470099973C /* WebService.swift in Sources */,
 				D88B331E296DC7B700F984C6 /* ProgressIndicatorModifier.swift in Sources */,
-				D8740E5B27BBDD4400DB5F26 /* CryptoFormatter.swift in Sources */,
 				D8C513B32979603000BD5CD5 /* CharacterDetailsViewModel.swift in Sources */,
+				D8F08ABC2992AEF600170D5D /* SignInBuilder.swift in Sources */,
+				D8F08AB72992A77900170D5D /* NetworkAssembly.swift in Sources */,
 				D88B3314296C4FB000F984C6 /* SignInViewModel.swift in Sources */,
 				D8C745DE28718FAC0099973C /* Colors.swift in Sources */,
 				D8C745DF28718FAC0099973C /* Assets.swift in Sources */,
@@ -567,18 +591,22 @@
 				D893D25527A43F4E0005B8D9 /* MarvelousApp.swift in Sources */,
 				D88B3312296C4EAA00F984C6 /* SignInScreen.swift in Sources */,
 				D8C513A9297850FE00BD5CD5 /* AsyncImageView.swift in Sources */,
+				D850DE2B2993DCBC0023D9BC /* NavigationAssembly.swift in Sources */,
 				D85F9F1E27A5984D002733AD /* WebError.swift in Sources */,
+				D8F08AB329929D1400170D5D /* HelperAssembly.swift in Sources */,
 				D8740E6827BC014300DB5F26 /* CardViewModifier.swift in Sources */,
 				D88B332D29702CA000F984C6 /* ImageUrlBuilder.swift in Sources */,
 				D8EB445927A9698F001A74C7 /* ConfigurationProvider.swift in Sources */,
 				D8C513AE2979377C00BD5CD5 /* ToggleStyle.swift in Sources */,
 				D8EB445F27A98855001A74C7 /* String+Localized.swift in Sources */,
+				D8F08AB529929EFC00170D5D /* StorageAssembly.swift in Sources */,
 				D8C513A6297835E700BD5CD5 /* CharacterCarouselView.swift in Sources */,
 				D8EB446427A995C2001A74C7 /* LocalStorageProvider.swift in Sources */,
 				D88B332A29700F2300F984C6 /* CharacterRowView.swift in Sources */,
 				D8815CF9288AC9F8006FB587 /* KeychainAccess.swift in Sources */,
 				D88B3318296C5F8000F984C6 /* HasDependencyDefinition.swift in Sources */,
 				D8C513AB29792F4100BD5CD5 /* LoadingTaskModifier.swift in Sources */,
+				D8F08ABA2992ACEC00170D5D /* Buildable.swift in Sources */,
 				D8EC295527A690090021BD77 /* DependencyContainer.swift in Sources */,
 				D8823DCC28745AA2005D15A3 /* CharacterResponse.swift in Sources */,
 				D8823DC8287454DB005D15A3 /* CommonResponseContainer.swift in Sources */,

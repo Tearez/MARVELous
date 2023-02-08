@@ -5,7 +5,7 @@
 //  Created by Martin Dimitrov on 9.01.23.
 //
 
-import Foundation
+import SwiftUI
 
 protocol HasKeychainSetter {
 	var keychainSetter: KeychainAccessSetterProtocol { get }
@@ -25,4 +25,8 @@ protocol HasConfigurationProvider {
 
 protocol HasImageUrlBuilder {
 	var imageUrlBuilder: ImageUrlBuilderProtocol { get }
+}
+
+protocol HasNavigationPath {
+	var navigationPath: NavigationPath { get }
 }
