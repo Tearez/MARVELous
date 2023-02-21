@@ -10,6 +10,7 @@ import Foundation
 final class SignInViewModel: ObservableObject {
 	private let keychainSetter: KeychainAccessSetterProtocol
 	private let keychainFetcher: KeychainAccessFetcherProtocol
+	private let navigator: Navigatable
 
 	@MainActor
 	@Published var publicKey: String = ""
@@ -19,9 +20,11 @@ final class SignInViewModel: ObservableObject {
 	@Published var errorMessage: String?
 
 	init(keychainSetter: KeychainAccessSetterProtocol,
-		 keychainFetcher: KeychainAccessFetcherProtocol) {
+		 keychainFetcher: KeychainAccessFetcherProtocol,
+		 navigator: Navigatable) {
 		self.keychainSetter = keychainSetter
 		self.keychainFetcher = keychainFetcher
+		self.navigator = navigator
 	}
 
 	func checkKeychainStore() async {
@@ -51,6 +54,10 @@ final class SignInViewModel: ObservableObject {
 				errorMessage = error.localizedDescription
 			})
 		}
+	}
+
+	func didSignIn() {
+		navigator.push(RootDestination.home)
 	}
 
 	@MainActor func resetError() {

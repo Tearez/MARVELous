@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D829A3DA29A4FADF0020113F /* RootRouterInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D829A3D929A4FADF0020113F /* RootRouterInteractor.swift */; };
 		D84A43D02971BC56001A7948 /* CharactersRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D84A43CF2971BC56001A7948 /* CharactersRouter.swift */; };
 		D850DE2B2993DCBC0023D9BC /* NavigationAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = D850DE2A2993DCBC0023D9BC /* NavigationAssembly.swift */; };
 		D85F9F1E27A5984D002733AD /* WebError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D85F9F1D27A5984D002733AD /* WebError.swift */; };
@@ -57,6 +58,7 @@
 		00E0057220A5DDF0C9D784A1 /* Pods-Marvelous.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Marvelous.debug.xcconfig"; path = "Target Support Files/Pods-Marvelous/Pods-Marvelous.debug.xcconfig"; sourceTree = "<group>"; };
 		9E690BEB698637AD9B88039D /* Pods_Marvelous.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Marvelous.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFDFEDB3C8C12D6EC1CA0AF7 /* Pods-Marvelous.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Marvelous.release.xcconfig"; path = "Target Support Files/Pods-Marvelous/Pods-Marvelous.release.xcconfig"; sourceTree = "<group>"; };
+		D829A3D929A4FADF0020113F /* RootRouterInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootRouterInteractor.swift; sourceTree = "<group>"; };
 		D84A43CF2971BC56001A7948 /* CharactersRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersRouter.swift; sourceTree = "<group>"; };
 		D850DE2A2993DCBC0023D9BC /* NavigationAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationAssembly.swift; sourceTree = "<group>"; };
 		D85F9F1D27A5984D002733AD /* WebError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebError.swift; sourceTree = "<group>"; };
@@ -219,6 +221,7 @@
 			isa = PBXGroup;
 			children = (
 				D88B331B296DA68000F984C6 /* RootRouter.swift */,
+				D829A3D929A4FADF0020113F /* RootRouterInteractor.swift */,
 			);
 			path = Root;
 			sourceTree = "<group>";
@@ -587,6 +590,7 @@
 				D88B3314296C4FB000F984C6 /* SignInViewModel.swift in Sources */,
 				D8C745DE28718FAC0099973C /* Colors.swift in Sources */,
 				D8C745DF28718FAC0099973C /* Assets.swift in Sources */,
+				D829A3DA29A4FADF0020113F /* RootRouterInteractor.swift in Sources */,
 				D84A43D02971BC56001A7948 /* CharactersRouter.swift in Sources */,
 				D893D25527A43F4E0005B8D9 /* MarvelousApp.swift in Sources */,
 				D88B3312296C4EAA00F984C6 /* SignInScreen.swift in Sources */,

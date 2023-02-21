@@ -8,20 +8,22 @@
 import SwiftUI
 
 protocol SignInDependency: HasKeychainSetter,
-						   HasKeychainAccessFetcher {}
+						   HasKeychainAccessFetcher,
+						   HasNavigator {}
 
 enum SignInAction {
 	case signInSuccessfully
 }
 
 protocol SignInBuildable: Buildable {
-	func build(action: @escaping (SignInAction) -> Void) -> SignInScreen
+	func build() -> SignInScreen
 }
 
 final class SignInBuilder: Builder<SignInDependency>, SignInBuildable {
-	func build(action: @escaping (SignInAction) -> Void) -> SignInScreen {
+	func build() -> SignInScreen {
 		let viewModel = SignInViewModel(keychainSetter: dependency.keychainSetter,
-										keychainFetcher: dependency.keychainFetcher)
-		return SignInScreen(viewModel: viewModel, action: action)
+										keychainFetcher: dependency.keychainFetcher,
+										navigator: dependency.navigator)
+		return SignInScreen(viewModel: viewModel)
 	}
 }

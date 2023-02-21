@@ -27,6 +27,6 @@ protocol HasImageUrlBuilder {
 	var imageUrlBuilder: ImageUrlBuilderProtocol { get }
 }
 
-protocol HasNavigationPath {
-	var navigationPath: NavigationPath { get }
+protocol HasNavigator {
+	var navigator: Navigatable { get }
 }

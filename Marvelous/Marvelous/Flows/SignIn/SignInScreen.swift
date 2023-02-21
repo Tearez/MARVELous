@@ -10,11 +10,9 @@ import SwiftUI
 struct SignInScreen: View {
 	@StateObject private var viewModel: SignInViewModel
 	@State private var shouldShowProgress = false
-	private let action: (SignInAction) -> Void
 
-	init(viewModel: SignInViewModel, action: @escaping (SignInAction) -> Void) {
+	init(viewModel: SignInViewModel) {
 		self._viewModel = StateObject(wrappedValue: viewModel)
-		self.action = action
 	}
 
 
@@ -32,7 +30,7 @@ struct SignInScreen: View {
 						shouldShowProgress = true
 						await viewModel.signIn()
 						shouldShowProgress = false
-						action(.signInSuccessfully)
+						viewModel.didSignIn()
 					}
 				})
 				.primaryButtonStyle()

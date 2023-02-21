@@ -14,7 +14,9 @@ protocol MainDependency: HasKeychainSetter,
 						 HasSecretEncryptor,
 						 HasConfigurationProvider,
 						 HasImageUrlBuilder,
-						 HasNavigationPath {}
+						 HasNavigator {
+	var rootRouterInteractor: RootRouterInteractor { get }
+}
 
 final class DependencyContainer {
 	static let shared: DependencyContainer = .init()
@@ -56,8 +58,12 @@ extension DependencyContainer: MainDependency {
 		container.resolve(ImageUrlBuilderProtocol.self)!
 	}
 
-	var navigationPath: NavigationPath {
-		container.resolve(NavigationPath.self)!
+	var navigator: Navigatable {
+		container.resolve(Navigatable.self)!
+	}
+
+	var rootRouterInteractor: RootRouterInteractor {
+		container.resolve(RootRouterInteractor.self)!
 	}
 }
 

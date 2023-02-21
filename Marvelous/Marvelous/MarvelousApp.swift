@@ -9,9 +9,14 @@ import SwiftUI
 
 @main
 struct MarvelousApp: App {
+	private let dependendy: DependencyContainer = DependencyContainer()
+
     var body: some Scene {
         WindowGroup {
-			RootRouter()
+			RootRouter(builders: .init(
+				signInBuildable: SignInBuilder(dependency: dependendy)
+			),
+					   interactor: dependendy.rootRouterInteractor)
 		}
     }
 }
