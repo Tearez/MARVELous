@@ -26,7 +26,3 @@ protocol HasConfigurationProvider {
 protocol HasImageUrlBuilder {
 	var imageUrlBuilder: ImageUrlBuilderProtocol { get }
 }
-
-protocol HasNavigator {
-	var navigator: Navigatable { get }
-}

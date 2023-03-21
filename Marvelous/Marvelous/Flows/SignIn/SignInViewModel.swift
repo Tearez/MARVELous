@@ -6,11 +6,12 @@
 //
 
 import Foundation
+import UIKit
 
 final class SignInViewModel: ObservableObject {
 	private let keychainSetter: KeychainAccessSetterProtocol
 	private let keychainFetcher: KeychainAccessFetcherProtocol
-	private let navigator: Navigatable
+    private let router: Router
 
 	@MainActor
 	@Published var publicKey: String = ""
@@ -21,10 +22,10 @@ final class SignInViewModel: ObservableObject {
 
 	init(keychainSetter: KeychainAccessSetterProtocol,
 		 keychainFetcher: KeychainAccessFetcherProtocol,
-		 navigator: Navigatable) {
+         router: Router) {
 		self.keychainSetter = keychainSetter
 		self.keychainFetcher = keychainFetcher
-		self.navigator = navigator
+        self.router = router
 	}
 
 	func checkKeychainStore() async {
@@ -57,7 +58,16 @@ final class SignInViewModel: ObservableObject {
 	}
 
 	func didSignIn() {
-		navigator.push(RootDestination.home)
+        router.showModal(transition: .move(edge: .bottom),
+                         animation: .easeIn,
+                         alignment: .bottom,
+                         backgroundColor: .blue.opacity(0.2),
+                         backgroundEffect: .init(
+                            effect: UIBlurEffect(style: .systemMaterialDark),
+                            opacity: 0.85
+                         ),
+                         useDeviceBounds: true,
+                         modalType: .example)
 	}
 
 	@MainActor func resetError() {
